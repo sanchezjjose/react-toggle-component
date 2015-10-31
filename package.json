@@ -1,0 +1,39 @@
+{
+  "name": "react-toggle-component",
+  "version": "0.0.1",
+  "description": "A react toggle component.",
+  "keywords": [
+    "react-component",
+    "react",
+    "toggle"
+  ],
+  "main": "toggle.js",
+  "author": "Jose Sanchez <sanchezjjose@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "jsx toggle.jsx > toggle.js",
+    "test": "jshint . --exclude node_modules",
+    "prepublish": "npm run build && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanchezjjose/react-toggle-component"
+  },
+  "bugs": {
+    "url": "https://github.com/sanchezjjose/react-toggle-component/issues"
+  },
+  "browserify": {
+    "transform": [
+      "node-lessify"
+    ]
+  },
+  "dependencies": {
+    "node-lessify": "0.0.10",
+    "react": "^0.13.2"
+  },
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "react-tools": "^0.13.2",
+    "reactify": "^1.1.0"
+  }
+}
