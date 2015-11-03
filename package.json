@@ -1,6 +1,6 @@
 {
   "name": "@sanchezjjose/react-toggle-component",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react toggle component.",
   "keywords": [
     "react-component",
@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "node-lessify": "0.0.10",
-    "react": "^0.13.2"
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1"
   },
   "devDependencies": {
     "jshint": "^2.7.0",
