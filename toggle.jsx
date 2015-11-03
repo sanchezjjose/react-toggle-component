@@ -19,12 +19,12 @@
 
 }(this, function (React, ReactDOM) {
 
-  var Toggler = React.createClass({displayName: "Toggler",
+  var Toggler = React.createClass({
     render: function() {
       return (
-        React.createElement("div", {className: "react-toggle-container"}, 
-          "Hello, world! I am a React component."
-        )
+        <div className="react-toggle-container">
+          Hello, world! I am a CommentBox.
+        </div>
       );
     }
   });
