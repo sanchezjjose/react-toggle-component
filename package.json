@@ -11,8 +11,8 @@
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "jsx toggle.jsx > toggle.js",
-    "test": "jshint . --exclude node_modules",
+    "build": "jsx toggle.jsx > toggle.js && browserify main.js > dist/toggle.browserified.js",
+    "test": "jshint toggle.js",
     "prepublish": "npm run build && npm run test"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "react-dom": "^0.14.1"
   },
   "devDependencies": {
+    "browserify": "^12.0.1",
     "jshint": "^2.7.0",
     "react-tools": "^0.13.2",
     "reactify": "^1.1.0"

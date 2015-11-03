@@ -19,10 +19,14 @@
 
 }(this, function (React, ReactDOM) {
 
+	var divStyle = {
+	  color: 'red'
+	};
+
   var Toggler = React.createClass({
     render: function() {
       return (
-        <div className="react-toggle-container">
+        <div style={divStyle} className="toggle-component">
           Hello! I am a React Component.
         </div>
       );
