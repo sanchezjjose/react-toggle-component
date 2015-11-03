@@ -23,7 +23,7 @@
     render: function() {
       return (
         <div className="react-toggle-container">
-          Hello, world! I am a CommentBox.
+          Hello! I am a React Component.
         </div>
       );
     }
