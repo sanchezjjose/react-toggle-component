@@ -20,7 +20,7 @@
 
 }(this, function (reactToggle) {
 
-  reactToggle.init('react-toggle-container');
+  reactToggle.init('content');
 
   // Exposed public method
   return {};

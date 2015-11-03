@@ -11,7 +11,7 @@
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "jsx toggle.jsx > toggle.js && browserify main.js > dist/toggle.browserified.min.js",
+    "build": "jsx toggle.jsx > toggle.js && browserify main.js > dist/toggle.browserified.js",
     "test": "jshint . --exclude node_modules",
     "prepublish": "npm run build && npm run test"
   },

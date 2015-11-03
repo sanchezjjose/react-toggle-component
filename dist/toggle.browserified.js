@@ -21,7 +21,7 @@
 
 }(this, function (reactToggle) {
 
-  reactToggle.init('react-toggle-container');
+  reactToggle.init('content');
 
   // Exposed public method
   return {};
@@ -19065,10 +19065,16 @@ module.exports = require('./lib/React');
 
 }(this, function (React, ReactDOM) {
 
+	var divStyle = {
+	  color: 'red',
+	  WebkitTransition: 'all', // note the capital 'W' here
+	  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+	};
+
   var Toggler = React.createClass({displayName: "Toggler",
     render: function() {
       return (
-        React.createElement("div", {className: "react-toggle-container"}, 
+        React.createElement("div", {style: divStyle, className: "toggle-component"}, 
           "Hello! I am a React Component."
         )
       );
