@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "jsx toggle.jsx > toggle.js && browserify main.js > dist/toggle.browserified.js",
-    "test": "jshint . --exclude node_modules",
+    "test": "jshint toggle.js",
     "prepublish": "npm run build && npm run test"
   },
   "repository": {

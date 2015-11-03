@@ -19066,9 +19066,7 @@ module.exports = require('./lib/React');
 }(this, function (React, ReactDOM) {
 
 	var divStyle = {
-	  color: 'red',
-	  WebkitTransition: 'all', // note the capital 'W' here
-	  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+	  color: 'red'
 	};
 
   var Toggler = React.createClass({displayName: "Toggler",
