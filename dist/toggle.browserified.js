@@ -19065,24 +19065,58 @@ module.exports = require('./lib/React');
 
 }(this, function (React, ReactDOM) {
 
-	var divStyle = {
-	  color: 'red'
+	var linkStyle = { 
+		backgroundColor: 'cadetblue',
+		borderRadius: '4px',
+		color: 'white',
+		margin: '5px',
+		padding: '10px 30px',
+    textDecoration: 'none'
 	};
 
-  var Toggler = React.createClass({displayName: "Toggler",
-    render: function() {
-      return (
-        React.createElement("div", {style: divStyle, className: "toggle-component"}, 
-          "Hello! I am a React Component."
-        )
-      );
-    }
-  });
+  function getToggleButtonComponent(data) {
+
+  	var ToggleButtonForm = React.createClass({displayName: "ToggleButtonForm",
+	    render: function() {
+	      return (
+	        React.createElement("div", {className: "toggle-button-form"}, 
+	        	React.createElement(ToggleButton, {data: data})
+	        )
+	      );
+	    }
+	  });
+
+	  var ToggleButton = React.createClass({displayName: "ToggleButton",
+	    render: function() {
+	      return (
+	        React.createElement("div", {className: "toggle-button"}, 
+	          React.createElement("a", {style: linkStyle, href: "#", className: "btn btn-primary"}, this.props.data.button1), 
+	  				React.createElement("a", {style: linkStyle, href: "#", className: "btn btn-default"}, this.props.data.button2)
+	        )
+	      );
+	    }
+	  });
+
+	  var Toggler = React.createClass({displayName: "Toggler",
+	    render: function() {
+	      return (
+	        React.createElement("div", {className: "toggle-button-component"}, 
+		        React.createElement(ToggleButtonForm, null)
+		      )
+	      );
+	    }
+	  });
+
+	  return Toggler;
+  }
 
   function init(elementId) {
+  	// TODO: pass in data as part of options
+  	var data = { button1 : "In", button2: "Out"}; 
+  	var ToggleButton = getToggleButtonComponent(data);
 
     ReactDOM.render(
-      React.createElement(Toggler, null),
+      React.createElement(ToggleButton, null),
       document.getElementById(elementId)
     );
   }
