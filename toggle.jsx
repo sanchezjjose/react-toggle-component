@@ -19,24 +19,58 @@
 
 }(this, function (React, ReactDOM) {
 
-	var divStyle = {
-	  color: 'red'
+	var linkStyle = { 
+		backgroundColor: 'cadetblue',
+		borderRadius: '4px',
+		color: 'white',
+		margin: '5px',
+		padding: '10px 30px',
+    textDecoration: 'none'
 	};
 
-  var Toggler = React.createClass({
-    render: function() {
-      return (
-        <div style={divStyle} className="toggle-component">
-          Hello! I am a React Component.
-        </div>
-      );
-    }
-  });
+  function getToggleButtonComponent(data) {
+
+  	var ToggleButtonForm = React.createClass({
+	    render: function() {
+	      return (
+	        <div className="toggle-button-form">
+	        	<ToggleButton data={data} />
+	        </div>
+	      );
+	    }
+	  });
+
+	  var ToggleButton = React.createClass({
+	    render: function() {
+	      return (
+	        <div className="toggle-button">
+	          <a style={linkStyle} href="#" className="btn btn-on">{this.props.data.button1}</a>
+	  				<a style={linkStyle} href="#" className="btn btn-off">{this.props.data.button2}</a>
+	        </div>
+	      );
+	    }
+	  });
+
+	  var Toggler = React.createClass({
+	    render: function() {
+	      return (
+	        <div className="toggle-button-component">
+		        <ToggleButtonForm />
+		      </div>
+	      );
+	    }
+	  });
+
+	  return Toggler;
+  }
 
   function init(elementId) {
+  	// TODO: pass in data as part of options
+  	var data = { button1 : "In", button2: "Out"}; 
+  	var ToggleButton = getToggleButtonComponent(data);
 
     ReactDOM.render(
-      React.createElement(Toggler, null),
+      <ToggleButton />,
       document.getElementById(elementId)
     );
   }
