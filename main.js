@@ -3,26 +3,58 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    // AMD
     define(['./toggle.js'], factory);
 
   } else if (typeof exports === 'object') {
-    // CommonJS -- Node + Browserify
     module.exports = factory(
       require('./toggle.js')
     );
 
   } else {
-    // Browser globals (root is window)
     root.returnExports = factory(root.ReactToggle);
 
   }
 
 }(this, function (reactToggle) {
 
-  reactToggle.init('content');
+  var domElement = document.getElementById('content');
 
-  // Exposed public method
-  return {};
+  var onStateHttpRequest = {
+    url: '/rsvp/player/111111/game/111111',
+    postData: { rsvp: 'in', team_id: '111111' }
+  };
   
+  var offStateHttpRequest = {
+    url: '/rsvp/player/111111/game/111111',
+    postData: { rsvp: 'out', team_id: '111111' }
+  };
+  
+  var opts = {
+
+    onState: { 
+      buttonTextValue: 'In',
+      buttonStyle: {
+        backgroundColor: 'red',
+        border: '3px solid red'
+      }
+    },
+
+    offState: { 
+      buttonTextValue: 'Out',
+      buttonStyle: {
+        backgroundColor: 'black',
+        border: '3px solid black'
+      }
+    }
+  };
+
+  reactToggle.init(
+    domElement, 
+    onStateHttpRequest,
+    offStateHttpRequest,
+    opts
+  );
+
+  return {};
+    
 }));
