@@ -17,6 +17,11 @@
 
 }(this, function (reactToggle) {
 
+  function callback(data) {
+    console.log("Callback executed. Printing data from server: ");
+    console.log(data);
+  }
+
   var domElement = document.getElementById('content');
 
   var onStateHttpRequest = {
@@ -49,7 +54,8 @@
   };
 
   reactToggle.init(
-    domElement, 
+    domElement,
+    callback,
     onStateHttpRequest,
     offStateHttpRequest,
     opts

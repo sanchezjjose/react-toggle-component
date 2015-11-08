@@ -18,6 +18,11 @@
 
 }(this, function (reactToggle) {
 
+  function callback(data) {
+    console.log("Callback executed. Printing data from server: ");
+    console.log(data);
+  }
+
   var domElement = document.getElementById('content');
 
   var onStateHttpRequest = {
@@ -50,7 +55,8 @@
   };
 
   reactToggle.init(
-    domElement, 
+    domElement,
+    callback,
     onStateHttpRequest,
     offStateHttpRequest,
     opts
@@ -28328,21 +28334,13 @@ module.exports = require('./lib/React');
 	var onStateTextValue = 'On';
 	var offStateTextValue = 'Off';
 
-	function merge(objA, objB) {
-		for (var keyA in objA) {
-		  for (var keyB in objB) {
-		    if (keyA === keyB) objA[keyA] = objB[keyB];
-		  }
-		}
-	}
-
-	function bindEvents(onStateHttpRequest, offStateHttpRequest) {
+	function bindEvents(onStateHttpRequest, offStateHttpRequest, callback) {
 		$('.toggle-button-component .btn-on').click(function (ev) {
       ev.preventDefault();
 
       // TODO: return a Promise? or need some two-way data binding here.
 	    $.post(onStateHttpRequest.url, onStateHttpRequest.postData).done(function(data) {
-	      console.log(data);
+	      callback(data);
 	    });
 	  });
 
@@ -28351,7 +28349,7 @@ module.exports = require('./lib/React');
 
       // TODO: return a Promise? or need some two-way data binding here.
 	    $.post(offStateHttpRequest.url, offStateHttpRequest.postData).done(function(data) {
-	      console.log(data);
+	      callback(data);
 	    });
 	  });
 	}
@@ -28369,10 +28367,10 @@ module.exports = require('./lib/React');
 		  			offStateTextValue = this.props.opts.offState.buttonTextValue;		
 		  		}
 		  		if (this.props.opts.onState && this.props.opts.onState.buttonStyle) {
-		  			merge(onStateButtonStyle, this.props.opts.onState.buttonStyle);
+		  			$.extend(onStateButtonStyle, this.props.opts.onState.buttonStyle);
 		  		}
 		  		if (this.props.opts.offState && this.props.opts.offState.buttonStyle) {
-		  			merge(offStateButtonStyle, this.props.opts.offState.buttonStyle);
+		  			$.extend(offStateButtonStyle, this.props.opts.offState.buttonStyle);
 		  		}
 		  	}
 
@@ -28401,9 +28399,9 @@ module.exports = require('./lib/React');
     );
   }
 
-  function init(domElement, onStateHttpRequest, offStateHttpRequest, opts) {
+  function init(domElement, callback, onStateHttpRequest, offStateHttpRequest, opts) {
     renderToggleButtonComponent(domElement, opts);
-    bindEvents(onStateHttpRequest, offStateHttpRequest);
+    bindEvents(onStateHttpRequest, offStateHttpRequest, callback);
   }
 
   return {
