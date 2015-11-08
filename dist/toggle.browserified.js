@@ -4,17 +4,14 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    // AMD
     define(['./toggle.js'], factory);
 
   } else if (typeof exports === 'object') {
-    // CommonJS -- Node + Browserify
     module.exports = factory(
       require('./toggle.js')
     );
 
   } else {
-    // Browser globals (root is window)
     root.returnExports = factory(root.ReactToggle);
 
   }
@@ -45,10 +42,10 @@
 
     offState: { 
       buttonTextValue: 'Out',
-      // buttonStyle: {
-      //   backgroundColor: 'black',
-      //   border: '3px solid black'
-      // }
+      buttonStyle: {
+        backgroundColor: 'black',
+        border: '3px solid black'
+      }
     }
   };
 
@@ -59,9 +56,8 @@
     opts
   );
 
-  // Exposed public method
   return {};
-  
+    
 }));
 
 },{"./toggle.js":161}],2:[function(require,module,exports){
@@ -28333,8 +28329,8 @@ module.exports = require('./lib/React');
 	var offStateTextValue = 'Off';
 
 	function merge(objA, objB) {
-		for (keyA in objA) {
-		  for (keyB in objB) {
+		for (var keyA in objA) {
+		  for (var keyB in objB) {
 		    if (keyA === keyB) objA[keyA] = objB[keyB];
 		  }
 		}

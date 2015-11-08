@@ -39,8 +39,8 @@
 	var offStateTextValue = 'Off';
 
 	function merge(objA, objB) {
-		for (keyA in objA) {
-		  for (keyB in objB) {
+		for (var keyA in objA) {
+		  for (var keyB in objB) {
 		    if (keyA === keyB) objA[keyA] = objB[keyB];
 		  }
 		}
