@@ -40,16 +40,18 @@
     onState: { 
       buttonTextValue: 'In',
       buttonStyle: {
-        backgroundColor: 'red',
-        border: '3px solid red'
+        backgroundColor: '#4b758b',
+        border: '1px solid #5788a1',
+        color: '#eee'
       }
     },
 
     offState: { 
       buttonTextValue: 'Out',
       buttonStyle: {
-        backgroundColor: 'black',
-        border: '3px solid black'
+        backgroundColor: '#e0e0e0',
+        border: '1px solid #cccccc',
+        color: '#505050'
       }
     }
   };
