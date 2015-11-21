@@ -12,7 +12,6 @@
 
   } else {
     root.returnExports = factory(root.ReactToggle);
-
   }
 
 }(this, function (reactToggle) {
@@ -57,6 +56,7 @@
 
   reactToggle.init(
     domElement,
+    true,
     callback,
     onStateHttpRequest,
     offStateHttpRequest,
