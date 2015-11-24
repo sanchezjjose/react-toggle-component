@@ -28472,15 +28472,13 @@ module.exports = require('./lib/React');
       handleClick: function() {
 
         if (this.state.isActive) {
-          console.log("USER IS OUT!!!!");
 
+          // TODO: create an object w/ prototype for a get and post method
           $.post(offStateHttpRequest.url, offStateHttpRequest.postData).done(function(data) {
             callback(data);
           });
 
         } else {
-          console.log("USER IS IN!!!!");
-
           $.post(onStateHttpRequest.url, onStateHttpRequest.postData).done(function(data) {
             callback(data);
           });
