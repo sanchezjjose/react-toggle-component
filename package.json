@@ -3,7 +3,7 @@
   "description": "A react toggle component.",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
   "version": "0.1.5",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "toggle"
   ],
   "files": [
-    "./dist/npm/components"
+    "./dist/npm"
   ],
   "directories": {
     "lib": "./src",
@@ -32,7 +32,7 @@
     "build:all": "npm run build:dev && npm run build:min && npm run build:example",
     "prepublish": "npm run jsx && npm run lint",
     "lint": "jshint dist/npm/components/*.js",
-    "jsx": "jsx ./src/components ./dist/npm/components -x jsx"
+    "jsx": "jsx ./src ./dist/npm -x js && jsx ./src/components ./dist/npm/components -x jsx"
   },
   "dependencies": {
     "jquery": "~2.1.4",
