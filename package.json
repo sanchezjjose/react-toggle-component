@@ -17,6 +17,9 @@
     "react",
     "toggle"
   ],
+  "files": [
+    "./dist/npm"
+  ],
   "scripts": {
     "build": "browserify src/index.js -t reactify -d",
     "build:dev": "npm --loglevel=silent run build > dist/react-toggle-component.dev.js",
@@ -25,7 +28,7 @@
     "build:all": "npm run build:dev && npm run build:min && npm run build:example",
     "prepublish": "npm run jsx && npm run lint",
     "lint": "jshint dist/npm/components/*.js",
-    "jsx": "jsx ./src ./dist/npm -x jsx && jsx ./src ./dist/npm -x js"
+    "jsx": "jsx ./src/components ./dist/npm/components -x jsx"
   },
   "dependencies": {
     "jquery": "~2.1.4",
