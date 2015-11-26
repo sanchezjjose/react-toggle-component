@@ -1,114 +1,24 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    // AMD
-    define(['react', 'react-dom', 'jquery'], factory);
+    define(['react', 'react-dom', 'jquery', './slider.jsx', './text.jsx'], factory);
 
   } else if (typeof exports === 'object') {
-    // CommonJS -- Node + Browserify
     module.exports = factory(
       require('react'),
       require('react-dom'),
-      require('jquery')
+      require('jquery'),
+      require('./slider.jsx'),
+      require('./text.jsx')
     );
 
   } else {
-    // Browser globals (root is window)
-    root.ReactToggle = factory(root.React, root.ReactDOM, root.jQuery);
+    root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent);
   }
 
-}(this, function (React, ReactDOM, $) {
+}(this, function (React, ReactDOM, $, SliderComponent, TextComponent) {
 
-  function renderToggleButtonComponent(domElement, isActive, onStateHttpRequest, offStateHttpRequest, callback, opts) {
-
-    var SliderComponent = React.createClass({
-
-      render: function() {
-
-        var styles = {
-          base: {
-            backgroundImage: 'none',
-            WebkitBoxShadow: 'none',
-            boxShadow: 'none',
-            borderColor: '#dfdfdf',
-            borderRadius: '50px',
-            top: '-1px',
-            left: '-1px',
-            bottom: '-1px',
-            height: 'auto',
-            width: '32px',
-            border: '1px solid #ececec',
-            backgroundColor: '#fff',
-            display: 'inline-block',
-            position: 'absolute'
-          },
-          active: {
-            left: 'auto',
-            right: '-1px'
-          }
-        };
-
-        var sliderStyles = $.extend({}, styles.base, this.props.isActive && styles.active);
-
-        return (
-          <div className="slider" style={sliderStyles}></div>
-        );
-      }
-    });
-
-    var TextComponent = React.createClass({
-
-      render: function() {
-
-        var styles = {
-          base: {
-            textShadow: '0 1px 0 rgba(0,0,0,0.2)',
-            color: '#555',
-            fontSize: '14px',
-            fontWeight: 'bold',
-            top: '7px',
-            right: '18px',
-            margin: '0',
-            position: 'absolute'
-          },
-          active: {
-            visibility: 'hidden'
-          },
-          onText: {
-            left: '25px', 
-            right: 'auto',
-            textShadow: '0 1px 0 rgba(0,0,0,0.5)',
-            color: '#fff'
-          },
-          offText: {
-            textShadow: '0 1px 0 rgba(0,0,0,0.2)',
-            color: '#555'
-          }
-        };
-
-        var onStateTextStyle = $.extend({}, styles.base, (!this.props.isActive && styles.active) || styles.onText),
-            offStateTextStyle = $.extend({}, styles.base, (this.props.isActive && styles.active) || styles.offText),
-            onStateTextValue = '',
-            offStateTextValue = '';
-
-        // TODO: switch statement
-        if (this.props.opts) {
-          if (this.props.opts.onState && this.props.opts.onState.buttonTextValue) {
-            onStateTextValue = this.props.opts.onState.buttonTextValue;
-          }
-          if (this.props.opts.offState && this.props.opts.offState.buttonTextValue) {
-            offStateTextValue = this.props.opts.offState.buttonTextValue;   
-          }
-        }
-
-        return (
-          <div>
-            <p className="onText status" style={onStateTextStyle}> {onStateTextValue} </p>
-            <p className="offText status" style={offStateTextStyle}> {offStateTextValue} </p>
-          </div>
-        );
-      }
-    });
+  function renderToggleButton(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 
     // TODO: remove this component altogther?
     var InputComponent = React.createClass({
@@ -186,7 +96,7 @@
         this.setState({ isActive: !this.state.isActive });
       },
 
-	    render: function() {
+      render: function() {
 
         var styles = {
           base: {
@@ -218,28 +128,24 @@
 
         var toggleButtonStyles = $.extend({}, styles.base, this.state.isActive && styles.active);
 
-	      return (
+        return (
           <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>
             <SliderComponent isActive={this.state.isActive} />
             <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
             <InputComponent isActive={this.state.isActive} />
           </div>
-	      );
-	    }
-	  });
+        );
+      }
+    });
 
-	  ReactDOM.render(
+    ReactDOM.render(
       <ToggleButtonComponent opts={opts} />,
       domElement
     );
   }
 
-  function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
-    renderToggleButtonComponent(domElement, isActive, onStateHttpRequest, offStateHttpRequest, callback, opts);
-  }
-
   return {
-    init : init
+    init : renderToggleButton
   };
 
 }));

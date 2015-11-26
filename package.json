@@ -1,20 +1,10 @@
 {
   "name": "@sanchezjjose/react-toggle-component",
-  "version": "0.1.0",
   "description": "A react toggle component.",
-  "keywords": [
-    "react-component",
-    "react",
-    "toggle"
-  ],
-  "main": "toggle.js",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
+  "version": "0.1.1",
+  "main": "src/index.js",
   "license": "MIT",
-  "scripts": {
-    "build": "jsx toggle.jsx > toggle.js && browserify main.js > dist/toggle.browserified.js",
-    "test": "jshint toggle.js",
-    "prepublish": "npm run build && npm run test"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sanchezjjose/react-toggle-component"
@@ -22,10 +12,18 @@
   "bugs": {
     "url": "https://github.com/sanchezjjose/react-toggle-component/issues"
   },
-  "browserify": {
-    "transform": [
-      "node-lessify"
-    ]
+  "keywords": [
+    "react-component",
+    "react",
+    "toggle"
+  ],
+  "scripts": {
+    "build": "browserify src/index.js -t reactify -d",
+    "build:dev": "npm --loglevel=silent run build > dist/react-toggle-component.dev.js",
+    "build:min": "npm --loglevel=silent run build -- | uglifyjs -cmvb beautify=false,ascii_only=true - > dist/react-toggle-component.min.js",
+    "build:example": "browserify example/index.js -s ReactToggleComponent -t reactify -d > example/react-toggle-component.example.js",
+    "test": "jshint src/index.js",
+    "prepublish": "npm run build && npm run test"
   },
   "dependencies": {
     "jquery": "~2.1.4",
@@ -37,6 +35,7 @@
     "browserify": "^12.0.1",
     "jshint": "^2.7.0",
     "react-tools": "^0.13.2",
-    "reactify": "^1.1.0"
+    "reactify": "^1.1.0",
+    "uglify-js": "^2.4.20"
   }
 }

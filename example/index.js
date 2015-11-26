@@ -3,11 +3,11 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['./toggle.js'], factory);
+    define(['../src/components/toggle.jsx'], factory);
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
-      require('./toggle.js')
+      require('../src/components/toggle.jsx')
     );
 
   } else {
@@ -24,13 +24,13 @@
   var domElement = document.getElementById('content');
 
   var onStateHttpRequest = {
-    url: '/rsvp/player/111111/game/111111',
-    postData: { rsvp: 'in', team_id: '111111' }
+    url: 'https://randomuser.me/api',
+    postData: {}
   };
   
   var offStateHttpRequest = {
-    url: '/rsvp/player/111111/game/111111',
-    postData: { rsvp: 'out', team_id: '111111' }
+    url: 'https://randomuser.me/api',
+    postData: {}
   };
   
   var opts = {
