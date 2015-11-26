@@ -2,7 +2,7 @@
   "name": "@sanchezjjose/react-toggle-component",
   "description": "A react toggle component.",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "src/index.js",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,10 @@
     "build:dev": "npm --loglevel=silent run build > dist/react-toggle-component.dev.js",
     "build:min": "npm --loglevel=silent run build -- | uglifyjs -cmvb beautify=false,ascii_only=true - > dist/react-toggle-component.min.js",
     "build:example": "browserify example/index.js -s ReactToggleComponent -t reactify -d > example/react-toggle-component.example.js",
-    "test": "jshint src/index.js",
-    "prepublish": "npm run build && npm run test"
+    "build:all": "npm run build:dev && npm run build:min && npm run build:example",
+    "prepublish": "npm run jsx && npm run lint",
+    "lint": "jshint dist/npm/components/*.js",
+    "jsx": "jsx ./src ./dist/npm -x jsx && jsx ./src ./dist/npm -x js"
   },
   "dependencies": {
     "jquery": "~2.1.4",
