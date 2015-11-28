@@ -3,11 +3,11 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['../src/components/toggle.jsx'], factory);
+    define(['../lib/index'], factory);
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
-      require('../src/components/toggle.jsx')
+      require('../lib/index')
     );
 
   } else {

@@ -1,18 +1,15 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    // AMD
     define(['react', 'jquery'], factory);
 
   } else if (typeof exports === 'object') {
-    // CommonJS -- Node + Browserify
     module.exports = factory(
       require('react'),
       require('jquery')
     );
 
   } else {
-    // Browser globals (root is window)
     root.SliderComponent = factory(root.React, root.jQuery);
   }
 

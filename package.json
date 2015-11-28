@@ -2,8 +2,8 @@
   "name": "@sanchezjjose/react-toggle-component",
   "description": "A react toggle component.",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
-  "version": "0.1.5-test",
-  "main": "./src/index.js",
+  "version": "0.2.0",
+  "main": "./lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,35 +15,38 @@
   "keywords": [
     "react-component",
     "react",
-    "toggle"
+    "toggle",
+    "button"
   ],
-  "files": [
-    "./dist/npm"
-  ],
-  "directories": {
-    "lib": "./src",
-    "example": "./example"
+  "browserify": {
+    "transform": [
+      [ 
+        "babelify", { "presets": ["es2015", "react"] }
+      ]
+    ]
   },
   "scripts": {
-    "build": "browserify src/index.js -t reactify -d",
+    "compile": "babel --presets es2015,react -d lib/ src/",
+    "prepublish": "npm run compile && npm run build:all",
+    "build": "browserify lib/index.js",
     "build:dev": "npm --loglevel=silent run build > dist/react-toggle-component.dev.js",
     "build:min": "npm --loglevel=silent run build -- | uglifyjs -cmvb beautify=false,ascii_only=true - > dist/react-toggle-component.min.js",
-    "build:example": "browserify example/index.js -s ReactToggleComponent -t reactify -d > example/react-toggle-component.example.js",
+    "build:example": "browserify example/index.js -s ReactToggleComponent > example/react-toggle-component.example.js",
     "build:all": "npm run build:dev && npm run build:min && npm run build:example",
-    "prepublish": "npm run jsx && npm run lint",
-    "lint": "jshint dist/npm/components/*.js",
-    "jsx": "jsx ./src ./dist/npm -x js && jsx ./src/components ./dist/npm/components -x jsx"
+    "lint": "jshint lib/components/*.js"
   },
   "dependencies": {
     "jquery": "~2.1.4",
-    "node-lessify": "0.0.10",
     "react": "^0.14.1",
     "react-dom": "^0.14.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "jshint": "^2.7.0",
-    "react-tools": "^0.13.2",
     "reactify": "^1.1.0",
     "uglify-js": "^2.4.20"
   }

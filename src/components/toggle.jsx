@@ -1,15 +1,15 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['react', 'react-dom', 'jquery', './slider.jsx', './text.jsx'], factory);
+    define(['react', 'react-dom', 'jquery', './slider', './text'], factory);
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
       require('react'),
       require('react-dom'),
       require('jquery'),
-      require('./slider.jsx'),
-      require('./text.jsx')
+      require('./slider'),
+      require('./text')
     );
 
   } else {
@@ -18,7 +18,7 @@
 
 }(this, function (React, ReactDOM, $, SliderComponent, TextComponent) {
 
-  function renderToggleButton(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
+  function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 
     // TODO: remove this component altogther?
     var InputComponent = React.createClass({
@@ -145,7 +145,7 @@
   }
 
   return {
-    init : renderToggleButton
+    init : init
   };
 
 }));
