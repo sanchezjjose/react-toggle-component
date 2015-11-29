@@ -16,7 +16,7 @@
     root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent);
   }
 
-}(this, function (React, ReactDOM, $, SliderComponent, TextComponent) {
+}(self, function (React, ReactDOM, $, SliderComponent, TextComponent) {
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 

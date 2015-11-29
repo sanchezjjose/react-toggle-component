@@ -13,7 +13,7 @@
     root.SliderComponent = factory(root.React, root.jQuery);
   }
 
-}(this, function (React, $) {
+}(self, function (React, $) {
 
   return React.createClass({
 

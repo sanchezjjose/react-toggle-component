@@ -16,7 +16,7 @@ function _typeof(obj) {
   } else {
     root.SliderComponent = factory(root.React, root.jQuery);
   }
-})(undefined, function (React, $) {
+})(self, function (React, $) {
 
   return React.createClass({
 
@@ -70,7 +70,7 @@ function _typeof(obj) {
   } else {
     root.TextComponent = factory(root.React, root.jQuery);
   }
-})(undefined, function (React, $) {
+})(self, function (React, $) {
 
   return React.createClass({
 
@@ -140,7 +140,7 @@ function _typeof(obj) {
   } else {
     root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent);
   }
-})(undefined, function (React, ReactDOM, $, SliderComponent, TextComponent) {
+})(self, function (React, ReactDOM, $, SliderComponent, TextComponent) {
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 
