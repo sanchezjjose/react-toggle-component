@@ -11,7 +11,7 @@
     );
 
   } else {
-    root.returnExports = factory(root.ReactToggle);
+    root.returnExports = factory(root.ReactToggleComponent);
   }
 
 }(self, function (reactToggle) {
