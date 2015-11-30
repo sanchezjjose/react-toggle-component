@@ -12,7 +12,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
   } else {
     root.returnExports = factory(root.ReactToggle);
   }
-})(undefined, function (reactToggle) {
+})(self, function (reactToggle) {
 
   function callback(data) {
     console.log("Callback executed. Printing data from server: ");

@@ -14,7 +14,7 @@
     root.returnExports = factory(root.ReactToggle);
   }
 
-}(this, function (reactToggle) {
+}(self, function (reactToggle) {
 
   function callback(data) {
     console.log("Callback executed. Printing data from server: ");
