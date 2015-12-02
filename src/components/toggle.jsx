@@ -21,24 +21,42 @@
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 
+    function getStyles() {
+
+      var styles = {
+        base: {
+          fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
+          background: '#f8f8f8',
+          border: '1px solid #dfdfdf',
+          borderRadius: '50px',
+          WebkitBoxShadow: 'none',
+          boxShadow: 'none',
+          WebkitUserSelect: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
+          userSelect: 'none',
+          width: '85px',
+          cursor: 'pointer',
+          height: '32px',
+          position: 'relative',
+          display: 'inline-block'
+        },
+        active: {
+          background: '#a9db80',
+          MozBackgroundImage: '-moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%)',
+          WebkitBackgroundImage: '-webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%)',
+          backgroundImage: 'linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%)',
+          WebkitBoxShadow: 'none',
+          boxShadow: 'none'
+        }
+      };
+
+      return styles;
+    }
+
     var ToggleButtonComponent = React.createClass({
 
       getInitialState: function() {
-
-        var buttonStyle = { };
-    
-        var onStateButtonStyle = $.extend(true, {}, buttonStyle);
-        var offStateButtonStyle = $.extend(true, {}, buttonStyle);
-
-        // TODO: switch statement
-        if (this.props.opts) {
-          if (this.props.opts.onState && this.props.opts.onState.buttonStyle) {
-            $.extend(onStateButtonStyle, this.props.opts.onState.buttonStyle);
-          }
-          if (this.props.opts.offState && this.props.opts.offState.buttonStyle) {
-            $.extend(offStateButtonStyle, this.props.opts.offState.buttonStyle);
-          }
-        }
 
         return { 
           isActive: isActive
@@ -59,33 +77,16 @@
 
       render: function() {
 
-        var styles = {
-          base: {
-            fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
-            background: '#f8f8f8',
-            border: '1px solid #dfdfdf',
-            borderRadius: '50px',
-            WebkitBoxShadow: 'none',
-            boxShadow: 'none',
-            WebkitUserSelect: 'none',
-            MozUserSelect: 'none',
-            msUserSelect: 'none',
-            userSelect: 'none',
-            width: '85px',
-            cursor: 'pointer',
-            height: '32px',
-            position: 'relative',
-            display: 'inline-block'
-          },
-          active: {
-            background: '#a9db80',
-            MozBackgroundImage: '-moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%)',
-            WebkitBackgroundImage: '-webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%)',
-            backgroundImage: 'linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%)',
-            WebkitBoxShadow: 'none',
-            boxShadow: 'none'
+        var styles = getStyles();
+
+        if (this.props.opts) {
+          if (this.props.opts.onState && this.props.opts.onState.buttonStyle) {
+            $.extend(styles.active, this.props.opts.onState.buttonStyle);
           }
-        };
+          if (this.props.opts.offState && this.props.opts.offState.buttonStyle) {
+            $.extend(styles.base, this.props.opts.offState.buttonStyle);
+          }
+        }
 
         var toggleButtonStyles = $.extend({}, styles.base, this.state.isActive && styles.active);
 
