@@ -14,7 +14,7 @@
     root.returnExports = factory(root.ReactToggleComponent);
   }
 
-}(self, function (reactToggle) {
+}(self, function (ReactToggleComponent) {
 
   function callback(data) {
     console.log("Callback executed. Printing data from server: ");
@@ -54,7 +54,7 @@
     }
   };
 
-  reactToggle.init(
+  ReactToggleComponent.init(
     domElement,
     true,
     callback,

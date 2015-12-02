@@ -2,7 +2,7 @@
   "name": "@sanchezjjose/react-toggle-component",
   "description": "A react toggle component.",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./lib/index.js",
   "license": "MIT",
   "repository": {
@@ -27,6 +27,7 @@
   },
   "scripts": {
     "compile": "babel --presets es2015,react -d lib/ src/",
+    "watch": "babel --presets es2015,react --watch src/ --out-dir lib/",
     "prepublish": "npm run compile && npm run build:all",
     "build": "browserify lib/index.js",
     "build:dev": "npm --loglevel=silent run build > dist/react-toggle-component.dev.js",

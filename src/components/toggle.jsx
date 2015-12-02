@@ -1,7 +1,7 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['react', 'react-dom', 'jquery', './slider', './text'], factory);
+    define(['react', 'react-dom', 'jquery', './slider', './text', '../utils/http'], factory);
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
@@ -9,50 +9,17 @@
       require('react-dom'),
       require('jquery'),
       require('./slider'),
-      require('./text')
+      require('./text'),
+      require('../utils/http')
     );
 
   } else {
-    root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent);
+    root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent, root.HttpUtil);
   }
 
-}(self, function (React, ReactDOM, $, SliderComponent, TextComponent) {
+}(self, function (React, ReactDOM, $, SliderComponent, TextComponent, Http) {
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
-
-    // TODO: remove this component altogther?
-    var InputComponent = React.createClass({
-      
-      render: function() {
-
-        var styles = {
-          base: {
-            paddingBottom: '5px',
-            border: 'none',
-            WebkitBoxShadow: 'none',
-            boxShadow: 'none',
-            fontSize: '14px',
-            outline: 'none',
-            width: '100%',
-            opacity: '0',
-            height: '0',
-            margin: '0',
-            padding: '0',
-            lineHeight: 'normal',
-            verticalAlign: 'middle'
-          },
-          active: {
-
-          }
-        };
-
-        var inputStyles = $.extend({}, styles.base, this.props.isActive && styles.active);
-
-        return (
-          <input className="toggleButton" name="secret" type="checkbox" style={inputStyles} /> 
-        );
-      }
-    });
 
     var ToggleButtonComponent = React.createClass({
 
@@ -81,16 +48,10 @@
       handleClick: function() {
 
         if (this.state.isActive) {
-
-          // TODO: create an object w/ prototype for a get and post method
-          $.post(offStateHttpRequest.url, offStateHttpRequest.postData).done(function(data) {
-            callback(data);
-          });
+          Http.POST(offStateHttpRequest.url, offStateHttpRequest.postData, callback);
 
         } else {
-          $.post(onStateHttpRequest.url, onStateHttpRequest.postData).done(function(data) {
-            callback(data);
-          });
+          Http.POST(onStateHttpRequest.url, onStateHttpRequest.postData, callback);
         }
 
         this.setState({ isActive: !this.state.isActive });
@@ -132,7 +93,6 @@
           <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>
             <SliderComponent isActive={this.state.isActive} />
             <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
-            <InputComponent isActive={this.state.isActive} />
           </div>
         );
       }
