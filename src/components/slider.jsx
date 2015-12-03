@@ -42,6 +42,14 @@
         }
       };
 
+      if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+        $.extend(styles.active, this.props.opts.onState.styles.sliderComponent);
+      }
+
+      if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+        $.extend(styles.base, this.props.opts.offState.styles.sliderComponent);
+      }
+
       var sliderStyles = $.extend({}, styles.base, this.props.isActive && styles.active);
 
       return (

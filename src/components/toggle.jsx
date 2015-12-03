@@ -69,23 +69,19 @@
 
         var styles = getStyles();
 
-        if (this.props.opts && this.props.opts.onState) {
-          if (this.props.opts.onState.styles) {
-            $.extend(styles.active, this.props.opts.onState.styles.buttonComponent);
-          }
+        if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+          $.extend(styles.active, this.props.opts.onState.styles.buttonComponent);
         }
 
-        if (this.props.opts && this.props.opts.offState) {
-          if (this.props.opts.offState.styles) {
-            $.extend(styles.base, this.props.opts.offState.styles.buttonComponent);
-          }
+        if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+          $.extend(styles.base, this.props.opts.offState.styles.buttonComponent);
         }
 
         var toggleButtonStyles = $.extend({}, styles.base, this.state.isActive && styles.active);
 
         return (
           <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>
-            <SliderComponent isActive={this.state.isActive} />
+            <SliderComponent isActive={this.state.isActive} opts={this.props.opts} />
             <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
           </div>
         );

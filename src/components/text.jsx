@@ -28,7 +28,10 @@
           textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
           position: 'absolute',
-          right: '20px'
+          right: '20px',
+          msUserSelect: 'none',
+          MozUserSelect: 'none',
+          WebkitUserSelect: 'none'
         },
         active: {
           visibility: 'hidden'
@@ -44,6 +47,14 @@
           textShadow: '0 1px 0 rgba(0,0,0,0.2)'
         }
       };
+
+      if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+        $.extend(styles.onText, this.props.opts.onState.styles.textComponent);
+      }
+
+      if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+        $.extend(styles.offText, this.props.opts.offState.styles.textComponent);
+      }
 
       var onStateTextStyle = $.extend({}, styles.base, (!this.props.isActive && styles.active) || styles.onText),
           offStateTextStyle = $.extend({}, styles.base, (this.props.isActive && styles.active) || styles.offText),
