@@ -35,33 +35,26 @@
   
   var opts = {
 
-    onState: { 
-      buttonTextValue: 'In',
-      buttonStyle: {
-        backgroundColor: '#4b758b',
-        border: '1px solid #5788a1',
-        color: '#eee'
+    onState: {
+      text: 'In',
+      styles: {
+        buttonComponent: { },
+        textComponent: { },
+        sliderComponent: { }
       }
     },
 
     offState: { 
-      buttonTextValue: 'Out',
-      buttonStyle: {
-        backgroundColor: '#e0e0e0',
-        border: '1px solid #cccccc',
-        color: '#505050'
+      text: 'Out',
+      styles: {
+        buttonComponent: { },
+        textComponent: { },
+        sliderComponent: { }
       }
     }
   };
 
-  ReactToggleComponent.init(
-    domElement,
-    true,
-    callback,
-    onStateHttpRequest,
-    offStateHttpRequest,
-    opts
-  );
+  ReactToggleComponent.init(domElement, true, callback, onStateHttpRequest, offStateHttpRequest, opts);
 
   return {};
     

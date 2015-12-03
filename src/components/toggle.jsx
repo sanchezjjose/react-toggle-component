@@ -17,7 +17,7 @@
     root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent, root.HttpUtil);
   }
 
-}(self, function (React, ReactDOM, $, SliderComponent, TextComponent, Http) {
+}(self, function (React, ReactDOM, $, SliderComponent, TextComponent, httpUtil) {
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 
@@ -25,29 +25,19 @@
 
       var styles = {
         base: {
-          fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
-          background: '#f8f8f8',
-          border: '1px solid #dfdfdf',
+          backgroundColor: '#ddd',
+          border: '1px solid #ddd',
           borderRadius: '50px',
-          WebkitBoxShadow: 'none',
-          boxShadow: 'none',
-          WebkitUserSelect: 'none',
-          MozUserSelect: 'none',
-          msUserSelect: 'none',
-          userSelect: 'none',
-          width: '85px',
           cursor: 'pointer',
-          height: '32px',
+          display: 'inline-block',
+          fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
+          height: '40px',
           position: 'relative',
-          display: 'inline-block'
+          textTransform: 'uppercase',
+          width: '100px'
         },
         active: {
-          background: '#a9db80',
-          MozBackgroundImage: '-moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%)',
-          WebkitBackgroundImage: '-webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%)',
-          backgroundImage: 'linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%)',
-          WebkitBoxShadow: 'none',
-          boxShadow: 'none'
+          backgroundColor: '#28c891'
         }
       };
 
@@ -66,10 +56,10 @@
       handleClick: function() {
 
         if (this.state.isActive) {
-          Http.POST(offStateHttpRequest.url, offStateHttpRequest.postData, callback);
+          httpUtil.POST(offStateHttpRequest.url, offStateHttpRequest.postData, callback);
 
         } else {
-          Http.POST(onStateHttpRequest.url, onStateHttpRequest.postData, callback);
+          httpUtil.POST(onStateHttpRequest.url, onStateHttpRequest.postData, callback);
         }
 
         this.setState({ isActive: !this.state.isActive });
@@ -79,12 +69,15 @@
 
         var styles = getStyles();
 
-        if (this.props.opts) {
-          if (this.props.opts.onState && this.props.opts.onState.buttonStyle) {
-            $.extend(styles.active, this.props.opts.onState.buttonStyle);
+        if (this.props.opts && this.props.opts.onState) {
+          if (this.props.opts.onState.styles) {
+            $.extend(styles.active, this.props.opts.onState.styles.buttonComponent);
           }
-          if (this.props.opts.offState && this.props.opts.offState.buttonStyle) {
-            $.extend(styles.base, this.props.opts.offState.buttonStyle);
+        }
+
+        if (this.props.opts && this.props.opts.offState) {
+          if (this.props.opts.offState.styles) {
+            $.extend(styles.base, this.props.opts.offState.styles.buttonComponent);
           }
         }
 

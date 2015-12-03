@@ -21,20 +21,20 @@
 
       var styles = {
         base: {
+          backgroundColor: '#fff',
           backgroundImage: 'none',
-          WebkitBoxShadow: 'none',
-          boxShadow: 'none',
+          border: '1px solid #ececec',
           borderColor: '#dfdfdf',
           borderRadius: '50px',
-          top: '-1px',
-          left: '-1px',
           bottom: '-1px',
-          height: 'auto',
-          width: '32px',
-          border: '1px solid #ececec',
-          backgroundColor: '#fff',
+          boxShadow: 'none',
           display: 'inline-block',
-          position: 'absolute'
+          height: 'auto',
+          left: '-1px',
+          position: 'absolute',
+          top: '-1px',
+          width: '40px',
+          WebkitBoxShadow: 'none'
         },
         active: {
           left: 'auto',

@@ -21,27 +21,27 @@
 
       var styles = {
         base: {
-          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           color: '#555',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          top: '7px',
-          right: '18px',
+          fontSize: '16px',
+          fontWeight: 'normal',
+          top: '10px',
+          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
-          position: 'absolute'
+          position: 'absolute',
+          right: '20px'
         },
         active: {
           visibility: 'hidden'
         },
         onText: {
-          left: '25px', 
+          color: '#fff',
+          left: '28px',
           right: 'auto',
-          textShadow: '0 1px 0 rgba(0,0,0,0.5)',
-          color: '#fff'
+          textShadow: '0 1px 0 rgba(0,0,0,0.5)'
         },
         offText: {
-          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
-          color: '#555'
+          color: '#555',
+          textShadow: '0 1px 0 rgba(0,0,0,0.2)'
         }
       };
 
@@ -50,14 +50,12 @@
           onStateTextValue = '',
           offStateTextValue = '';
 
-      // TODO: switch statement
-      if (this.props.opts) {
-        if (this.props.opts.onState && this.props.opts.onState.buttonTextValue) {
-          onStateTextValue = this.props.opts.onState.buttonTextValue;
-        }
-        if (this.props.opts.offState && this.props.opts.offState.buttonTextValue) {
-          offStateTextValue = this.props.opts.offState.buttonTextValue;   
-        }
+      if (this.props.opts && this.props.opts.onState) {
+        onStateTextValue = this.props.opts.onState.text;
+      }
+
+      if (this.props.opts && this.props.opts.offState) {
+        offStateTextValue = this.props.opts.offState.text;
       }
 
       return (
