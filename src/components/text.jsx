@@ -22,13 +22,13 @@
       var styles = {
         base: {
           color: '#555',
-          fontSize: '16px',
+          fontSize: '15px',
           fontWeight: 'normal',
-          top: '10px',
+          top: '11px',
           textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
           position: 'absolute',
-          right: '20px',
+          right: '18px',
           msUserSelect: 'none',
           MozUserSelect: 'none',
           WebkitUserSelect: 'none'
@@ -38,7 +38,7 @@
         },
         onText: {
           color: '#fff',
-          left: '28px',
+          left: '30px',
           right: 'auto',
           textShadow: '0 1px 0 rgba(0,0,0,0.5)'
         },
