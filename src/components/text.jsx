@@ -21,7 +21,7 @@
 
       var styles = {
         base: {
-          color: '#555',
+          color: '#ddd',
           fontSize: '15px',
           fontWeight: 'normal',
           top: '11px',
@@ -51,7 +51,7 @@
           textShadow: '0 1px 0 rgba(0,0,0,0.5)'
         },
         offText: {
-          color: '#555',
+          color: '#ddd',
           textShadow: '0 1px 0 rgba(0,0,0,0.2)'
         }
       };

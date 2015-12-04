@@ -43,7 +43,7 @@
 
       var styles = {
         base: {
-          backgroundColor: '#ddd',
+          backgroundColor: '#555',
           border: '1px solid #ddd',
           borderRadius: '50px',
           cursor: 'pointer',
