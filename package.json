@@ -39,7 +39,8 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "react": "^0.14.1",
-    "react-dom": "^0.14.1"
+    "react-dom": "^0.14.1",
+    "react-addons-css-transition-group": "^0.14.1"
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",

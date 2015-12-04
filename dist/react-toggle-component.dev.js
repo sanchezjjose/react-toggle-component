@@ -24,26 +24,34 @@ function _typeof(obj) {
 
       var styles = {
         base: {
+          backgroundColor: '#fff',
           backgroundImage: 'none',
-          WebkitBoxShadow: 'none',
-          boxShadow: 'none',
+          border: '1px solid #ececec',
           borderColor: '#dfdfdf',
           borderRadius: '50px',
-          top: '-1px',
-          left: '-1px',
           bottom: '-1px',
-          height: 'auto',
-          width: '32px',
-          border: '1px solid #ececec',
-          backgroundColor: '#fff',
+          boxShadow: 'none',
           display: 'inline-block',
-          position: 'absolute'
+          height: 'auto',
+          left: '-1px',
+          position: 'absolute',
+          top: '-1px',
+          width: '40px',
+          WebkitBoxShadow: 'none'
         },
         active: {
           left: 'auto',
           right: '-1px'
         }
       };
+
+      if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+        $.extend(styles.active, this.props.opts.onState.styles.sliderComponent);
+      }
+
+      if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+        $.extend(styles.base, this.props.opts.offState.styles.sliderComponent);
+      }
 
       var sliderStyles = $.extend({}, styles.base, this.props.isActive && styles.active);
 
@@ -78,43 +86,52 @@ function _typeof(obj) {
 
       var styles = {
         base: {
-          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           color: '#555',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          top: '7px',
-          right: '18px',
+          fontSize: '15px',
+          fontWeight: 'normal',
+          top: '11px',
+          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
-          position: 'absolute'
+          position: 'absolute',
+          right: '18px',
+          msUserSelect: 'none',
+          MozUserSelect: 'none',
+          WebkitUserSelect: 'none'
         },
         active: {
           visibility: 'hidden'
         },
         onText: {
-          left: '25px',
+          color: '#fff',
+          left: '30px',
           right: 'auto',
-          textShadow: '0 1px 0 rgba(0,0,0,0.5)',
-          color: '#fff'
+          textShadow: '0 1px 0 rgba(0,0,0,0.5)'
         },
         offText: {
-          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
-          color: '#555'
+          color: '#555',
+          textShadow: '0 1px 0 rgba(0,0,0,0.2)'
         }
       };
+
+      if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+        $.extend(styles.onText, this.props.opts.onState.styles.textComponent);
+      }
+
+      if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+        $.extend(styles.offText, this.props.opts.offState.styles.textComponent);
+      }
 
       var onStateTextStyle = $.extend({}, styles.base, !this.props.isActive && styles.active || styles.onText),
           offStateTextStyle = $.extend({}, styles.base, this.props.isActive && styles.active || styles.offText),
           onStateTextValue = '',
           offStateTextValue = '';
 
-      // TODO: switch statement
-      if (this.props.opts) {
-        if (this.props.opts.onState && this.props.opts.onState.buttonTextValue) {
-          onStateTextValue = this.props.opts.onState.buttonTextValue;
-        }
-        if (this.props.opts.offState && this.props.opts.offState.buttonTextValue) {
-          offStateTextValue = this.props.opts.offState.buttonTextValue;
-        }
+      if (this.props.opts && this.props.opts.onState) {
+        onStateTextValue = this.props.opts.onState.text;
+      }
+
+      if (this.props.opts && this.props.opts.offState) {
+        offStateTextValue = this.props.opts.offState.text;
       }
 
       return React.createElement('div', null, React.createElement('p', { className: 'onText status', style: onStateTextStyle }, ' ', onStateTextValue, ' '), React.createElement('p', { className: 'offText status', style: offStateTextStyle }, ' ', offStateTextValue, ' '));
@@ -140,29 +157,37 @@ function _typeof(obj) {
   } else {
     root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent, root.HttpUtil);
   }
-})(self, function (React, ReactDOM, $, SliderComponent, TextComponent, Http) {
+})(self, function (React, ReactDOM, $, SliderComponent, TextComponent, httpUtil) {
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
+
+    function getStyles() {
+
+      var styles = {
+        base: {
+          backgroundColor: '#ddd',
+          border: '1px solid #ddd',
+          borderRadius: '50px',
+          cursor: 'pointer',
+          display: 'inline-block',
+          fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
+          height: '40px',
+          position: 'relative',
+          textTransform: 'uppercase',
+          width: '100px'
+        },
+        active: {
+          backgroundColor: '#28c891'
+        }
+      };
+
+      return styles;
+    }
 
     var ToggleButtonComponent = React.createClass({
       displayName: 'ToggleButtonComponent',
 
       getInitialState: function getInitialState() {
-
-        var buttonStyle = {};
-
-        var onStateButtonStyle = $.extend(true, {}, buttonStyle);
-        var offStateButtonStyle = $.extend(true, {}, buttonStyle);
-
-        // TODO: switch statement
-        if (this.props.opts) {
-          if (this.props.opts.onState && this.props.opts.onState.buttonStyle) {
-            $.extend(onStateButtonStyle, this.props.opts.onState.buttonStyle);
-          }
-          if (this.props.opts.offState && this.props.opts.offState.buttonStyle) {
-            $.extend(offStateButtonStyle, this.props.opts.offState.buttonStyle);
-          }
-        }
 
         return {
           isActive: isActive
@@ -172,9 +197,9 @@ function _typeof(obj) {
       handleClick: function handleClick() {
 
         if (this.state.isActive) {
-          Http.POST(offStateHttpRequest.url, offStateHttpRequest.postData, callback);
+          httpUtil.POST(offStateHttpRequest.url, offStateHttpRequest.postData, callback);
         } else {
-          Http.POST(onStateHttpRequest.url, onStateHttpRequest.postData, callback);
+          httpUtil.POST(onStateHttpRequest.url, onStateHttpRequest.postData, callback);
         }
 
         this.setState({ isActive: !this.state.isActive });
@@ -182,37 +207,19 @@ function _typeof(obj) {
 
       render: function render() {
 
-        var styles = {
-          base: {
-            fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
-            background: '#f8f8f8',
-            border: '1px solid #dfdfdf',
-            borderRadius: '50px',
-            WebkitBoxShadow: 'none',
-            boxShadow: 'none',
-            WebkitUserSelect: 'none',
-            MozUserSelect: 'none',
-            msUserSelect: 'none',
-            userSelect: 'none',
-            width: '85px',
-            cursor: 'pointer',
-            height: '32px',
-            position: 'relative',
-            display: 'inline-block'
-          },
-          active: {
-            background: '#a9db80',
-            MozBackgroundImage: '-moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%)',
-            WebkitBackgroundImage: '-webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%)',
-            backgroundImage: 'linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%)',
-            WebkitBoxShadow: 'none',
-            boxShadow: 'none'
-          }
-        };
+        var styles = getStyles();
+
+        if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+          $.extend(styles.active, this.props.opts.onState.styles.buttonComponent);
+        }
+
+        if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+          $.extend(styles.base, this.props.opts.offState.styles.buttonComponent);
+        }
 
         var toggleButtonStyles = $.extend({}, styles.base, this.state.isActive && styles.active);
 
-        return React.createElement('div', { className: 'toggleButton', onClick: this.handleClick, style: toggleButtonStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
+        return React.createElement('div', { className: 'toggleButton', onClick: this.handleClick, style: toggleButtonStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
       }
     });
 
@@ -251,20 +258,18 @@ function _typeof(obj) {
   }
 })(self, function ($) {
 
-  var Http = function Http() {};
-
-  Http.prototype = {
+  return {
 
     /**
-     * Makes http post request.
+     * Executes http post request asynchronously.
      *
      * @public
      * @method POST
-     * @param  {Object} url .....
-     * @param  {Object} postData .....
-     * @param  {Object} callback .....
+     * @param  {String} url
+     * @param  {Object} postData
+     * @param  {Function} callback
      *
-     * @return  {Object} ..........
+     * @return  {undefined} TODO: return ES6 Promise
      */
     POST: function POST(url, postData, callback) {
       $.post(url, postData).done(function (data) {
@@ -272,8 +277,6 @@ function _typeof(obj) {
       });
     }
   };
-
-  return new Http();
 });
 
 },{}],6:[function(require,module,exports){

@@ -1,19 +1,29 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['react', 'jquery'], factory);
+    define([
+      'react',
+      'react-addons-css-transition-group', 
+      'jquery'], 
+      factory
+    );
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
       require('react'),
+      require('react-addons-css-transition-group'),
       require('jquery')
     );
 
   } else {
-    root.SliderComponent = factory(root.React, root.jQuery);
+    root.SliderComponent = factory(
+      root.React,
+      root.React.addons.CSSTransitionGroup, 
+      root.jQuery
+    );
   }
 
-}(self, function (React, $) {
+}(self, function (React, ReactCSSTransitionGroup, $) {
 
   return React.createClass({
 
@@ -30,15 +40,16 @@
           boxShadow: 'none',
           display: 'inline-block',
           height: 'auto',
-          left: '-1px',
           position: 'absolute',
           top: '-1px',
+          transform: 'translate(-1px, 0px)',
+          transition: 'transform 0.4s ease'
           width: '40px',
-          WebkitBoxShadow: 'none'
+          WebkitBoxShadow: 'none',
         },
         active: {
-          left: 'auto',
-          right: '-1px'
+          transform: 'translate(60px, 0px)',
+          transition: 'transform 0.4s ease'
         }
       };
 

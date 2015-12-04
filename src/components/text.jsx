@@ -27,14 +27,22 @@
           top: '11px',
           textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
+          MozUserSelect: 'none',
+          MozTransition: 'opacity 500ms ease-in',
+          msUserSelect: 'none',
+          msTransition: 'opacity 500ms ease-in',
+          opacity: '1',
           position: 'absolute',
           right: '18px',
-          msUserSelect: 'none',
-          MozUserSelect: 'none',
-          WebkitUserSelect: 'none'
+          WebkitUserSelect: 'none',
+          WebkitTransition: 'opacity 500ms ease-in'
         },
         active: {
-          visibility: 'hidden'
+          MozTransition: 'opacity 500ms ease-in',
+          msTransition: 'opacity 500ms ease-in',
+          opacity: '0',
+          visibility: 'hidden',
+          WebkitTransition: 'opacity 500ms ease-in'
         },
         onText: {
           color: '#fff',
@@ -55,9 +63,11 @@
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
         $.extend(styles.offText, this.props.opts.offState.styles.textComponent);
       }
-
-      var onStateTextStyle = $.extend({}, styles.base, (!this.props.isActive && styles.active) || styles.onText),
-          offStateTextStyle = $.extend({}, styles.base, (this.props.isActive && styles.active) || styles.offText),
+ 
+      var hideOnText = !this.props.isActive && styles.active,
+          hideOffText = this.props.isActive && styles.active,
+          onStateTextStyle = $.extend({}, styles.base, hideOnText || styles.onText),
+          offStateTextStyle = $.extend({}, styles.base, hideOffText || styles.offText),          
           onStateTextValue = '',
           offStateTextValue = '';
 

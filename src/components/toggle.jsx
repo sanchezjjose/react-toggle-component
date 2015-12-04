@@ -1,11 +1,21 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['react', 'react-dom', 'jquery', './slider', './text', '../utils/http'], factory);
+    define([
+      'react', 
+      'react-addons-css-transition-group', 
+      'react-dom', 
+      'jquery', 
+      './slider', 
+      './text', 
+      '../utils/http'], 
+      factory
+    );
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
       require('react'),
+      require('react-addons-css-transition-group'),
       require('react-dom'),
       require('jquery'),
       require('./slider'),
@@ -14,10 +24,18 @@
     );
 
   } else {
-    root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.jQuery, root.SliderComponent, root.TextComponent, root.HttpUtil);
+    root.ReactToggleComponent = factory(
+      root.React, 
+      root.React.addons.CSSTransitionGroup,
+      root.ReactDOM, 
+      root.jQuery, 
+      root.SliderComponent, 
+      root.TextComponent, 
+      root.HttpUtil
+    );
   }
 
-}(self, function (React, ReactDOM, $, SliderComponent, TextComponent, httpUtil) {
+}(self, function (React, ReactCSSTransitionGroup, ReactDOM, $, SliderComponent, TextComponent, httpUtil) {
 
   function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
 
