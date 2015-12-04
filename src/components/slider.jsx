@@ -43,9 +43,9 @@
           position: 'absolute',
           top: '-1px',
           transform: 'translate(-1px, 0px)',
-          transition: 'transform 0.4s ease'
+          transition: 'transform 0.4s ease',
           width: '40px',
-          WebkitBoxShadow: 'none',
+          WebkitBoxShadow: 'none'
         },
         active: {
           transform: 'translate(60px, 0px)',
