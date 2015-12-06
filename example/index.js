@@ -40,18 +40,18 @@
     onState: {
       text: 'In',
       styles: {
-        buttonComponent: { width: '100', height: '40' },
+        buttonComponent: { },
         textComponent: { },
-        sliderComponent: { width: '40', transform: 'translate(60px, 0px)'}
+        sliderComponent: { }
       }
     },
 
     offState: { 
       text: 'Out',
       styles: {
-        buttonComponent: { width: '100', height: '40' },
+        buttonComponent: { },
         textComponent: { },
-        sliderComponent: { width: '40' }
+        sliderComponent: { }
       }
     }
   };

@@ -48,7 +48,7 @@
           WebkitBoxShadow: 'none'
         },
         active: {
-          transform: 'translate(160px, 0px)'
+          transform: 'translate(60px, 0px)'
         }
       };
 
