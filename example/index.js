@@ -23,15 +23,18 @@
 
   var domElement = document.getElementById('content');
 
-  var onStateHttpRequest = {
-    url: 'https://randomuser.me/api',
-    postData: {}
-  };
-  
-  var offStateHttpRequest = {
-    url: 'https://randomuser.me/api',
-    postData: {}
-  };
+  var httpRequests = {
+
+    onState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+
+    offState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+  }
   
   var opts = {
 
@@ -56,7 +59,7 @@
     }
   };
 
-  ReactToggleComponent.init(domElement, true, callback, onStateHttpRequest, offStateHttpRequest, opts);
+  ReactToggleComponent.init(domElement, true, callback, httpRequests, opts);
 
   return {};
     

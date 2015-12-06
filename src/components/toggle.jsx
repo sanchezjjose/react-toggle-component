@@ -37,7 +37,7 @@
 
 }(self, function (React, ReactCSSTransitionGroup, ReactDOM, $, SliderComponent, TextComponent, httpUtil) {
 
-  function init(domElement, isActive, callback, onStateHttpRequest, offStateHttpRequest, opts) {
+  function init(domElement, isActive, callback, httpRequests, opts) {
 
     function getStyles() {
 
@@ -74,10 +74,10 @@
       handleClick: function() {
 
         if (this.state.isActive) {
-          httpUtil.POST(offStateHttpRequest.url, offStateHttpRequest.postData, callback);
+          httpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
 
         } else {
-          httpUtil.POST(onStateHttpRequest.url, onStateHttpRequest.postData, callback);
+          httpUtil.POST(httpRequests.offState.url, httpRequests.offState.postData, callback);
         }
 
         this.setState({ isActive: !this.state.isActive });
