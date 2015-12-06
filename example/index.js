@@ -35,21 +35,23 @@
   
   var opts = {
 
+    // TODO: should there be a baseStyles object?
+
     onState: {
       text: 'In',
       styles: {
-        buttonComponent: { },
+        buttonComponent: { width: '100', height: '40' },
         textComponent: { },
-        sliderComponent: { }
+        sliderComponent: { width: '40', transform: 'translate(60px, 0px)'}
       }
     },
 
     offState: { 
       text: 'Out',
       styles: {
-        buttonComponent: { },
+        buttonComponent: { width: '100', height: '40' },
         textComponent: { },
-        sliderComponent: { }
+        sliderComponent: { width: '40' }
       }
     }
   };

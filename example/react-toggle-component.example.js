@@ -33,21 +33,23 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
   var opts = {
 
+    // TODO: should there be a baseStyles object?
+
     onState: {
       text: 'In',
       styles: {
-        buttonComponent: {},
+        buttonComponent: { width: '100', height: '40' },
         textComponent: {},
-        sliderComponent: {}
+        sliderComponent: { width: '40', transform: 'translate(60px, 0px)' }
       }
     },
 
     offState: {
       text: 'Out',
       styles: {
-        buttonComponent: {},
+        buttonComponent: { width: '100', height: '40' },
         textComponent: {},
-        sliderComponent: {}
+        sliderComponent: { width: '40' }
       }
     }
   };
@@ -90,18 +92,17 @@ function _typeof(obj) {
           borderRadius: '50px',
           bottom: '-1px',
           boxShadow: 'none',
-          display: 'inline-block',
-          height: 'auto',
-          position: 'absolute',
+          display: 'block',
+          height: '100%',
+          position: 'relative',
           top: '-1px',
-          transform: 'translate(-1px, 0px)',
+          transform: 'translate(0px, 0px)',
           transition: 'transform 0.4s ease',
           width: '40px',
           WebkitBoxShadow: 'none'
         },
         active: {
-          transform: 'translate(60px, 0px)',
-          transition: 'transform 0.4s ease'
+          transform: 'translate(160px, 0px)'
         }
       };
 
