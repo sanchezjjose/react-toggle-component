@@ -15,7 +15,6 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 })(self, function (ReactToggleComponent) {
 
   function callback(data) {
-    console.log("Callback executed. Printing data from server: ");
     console.log(data);
   }
 
