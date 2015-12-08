@@ -32,7 +32,7 @@
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, httpUtil) {
+}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
@@ -59,7 +59,7 @@
       return styles;
     }
 
-    let ToggleButtonComponent = React.createClass({
+    const ToggleButtonComponent = React.createClass({
 
       getInitialState: function() {
 
@@ -71,10 +71,10 @@
       handleClick: function() {
 
         if (this.state.isActive) {
-          httpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
+          HttpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
 
         } else {
-          httpUtil.POST(httpRequests.offState.url, httpRequests.offState.postData, callback);
+          HttpUtil.POST(httpRequests.offState.url, httpRequests.offState.postData, callback);
         }
 
         this.setState({ isActive: !this.state.isActive });
@@ -82,8 +82,7 @@
 
       render: function() {
 
-        let styles = getStyles();
-        let override = {};
+        const styles = getStyles();
 
         if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
           Object.assign(styles.active, this.props.opts.onState.styles.buttonComponent);
@@ -93,7 +92,7 @@
           Object.assign(styles.base, this.props.opts.offState.styles.buttonComponent);
         }
 
-        let toggleButtonStyles = Object.assign({}, styles.base, this.state.isActive && styles.active);
+        const toggleButtonStyles = Object.assign({}, styles.base, this.state.isActive && styles.active);
 
         return (
           <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>

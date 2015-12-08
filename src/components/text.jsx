@@ -18,7 +18,7 @@
 
     render: function() {
 
-      var styles = {
+      const styles = {
         base: {
           color: '#ddd',
           fontSize: '15px',
@@ -63,12 +63,12 @@
         Object.assign(styles.offText, this.props.opts.offState.styles.textComponent);
       }
  
-      let hideOnText = !this.props.isActive && styles.active,
-          hideOffText = this.props.isActive && styles.active,
-          onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText),
-          offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText),          
-          onStateTextValue = '',
-          offStateTextValue = '';
+      const hideOnText = !this.props.isActive && styles.active;
+      const hideOffText = this.props.isActive && styles.active;
+      const onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText);
+      const offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText);       
+      let onStateTextValue = '';
+      let offStateTextValue = '';
 
       if (this.props.opts && this.props.opts.onState) {
         onStateTextValue = this.props.opts.onState.text;

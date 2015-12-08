@@ -26,7 +26,7 @@
 
     render: function() {
 
-      let styles = {
+      const styles = {
         base: {
           backgroundColor: '#fff',
           backgroundImage: 'none',
@@ -57,7 +57,7 @@
         Object.assign(styles.base, this.props.opts.offState.styles.sliderComponent);
       }
 
-      let sliderStyles = Object.assign({}, styles.base, this.props.isActive && styles.active);
+      const sliderStyles = Object.assign({}, styles.base, this.props.isActive && styles.active);
 
       return (
         <div className="slider" style={sliderStyles}></div>

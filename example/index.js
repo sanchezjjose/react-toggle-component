@@ -42,20 +42,20 @@
 
     onState: {
       text: 'In',
-      styles: {
-        buttonComponent: { backgroundColor: 'red' },
-        textComponent: { color: 'blue' },
-        sliderComponent: { backgroundColor: 'black'}
-      }
+      // styles: {
+      //   buttonComponent: { backgroundColor: 'red' },
+      //   textComponent: { color: 'blue' },
+      //   sliderComponent: { backgroundColor: 'black'}
+      // }
     },
 
     offState: { 
       text: 'Out',
-      styles: {
-        buttonComponent: { backgroundColor: 'yellow' },
-        textComponent: { color: 'white' },
-        sliderComponent: { backgroundColor: 'green' }
-      }
+      // styles: {
+      //   buttonComponent: { backgroundColor: 'yellow' },
+      //   textComponent: { color: 'white' },
+      //   sliderComponent: { backgroundColor: 'green' }
+      // }
     }
   };
 

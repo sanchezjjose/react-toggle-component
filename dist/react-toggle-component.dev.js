@@ -129,12 +129,12 @@ function _typeof(obj) {
         Object.assign(styles.offText, this.props.opts.offState.styles.textComponent);
       }
 
-      var hideOnText = !this.props.isActive && styles.active,
-          hideOffText = this.props.isActive && styles.active,
-          onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText),
-          offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText),
-          onStateTextValue = '',
-          offStateTextValue = '';
+      var hideOnText = !this.props.isActive && styles.active;
+      var hideOffText = this.props.isActive && styles.active;
+      var onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText);
+      var offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText);
+      var onStateTextValue = '';
+      var offStateTextValue = '';
 
       if (this.props.opts && this.props.opts.onState) {
         onStateTextValue = this.props.opts.onState.text;
@@ -167,7 +167,7 @@ function _typeof(obj) {
   } else {
     root.ReactToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil);
   }
-})(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, httpUtil) {
+})(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
@@ -207,9 +207,9 @@ function _typeof(obj) {
       handleClick: function handleClick() {
 
         if (this.state.isActive) {
-          httpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
+          HttpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
         } else {
-          httpUtil.POST(httpRequests.offState.url, httpRequests.offState.postData, callback);
+          HttpUtil.POST(httpRequests.offState.url, httpRequests.offState.postData, callback);
         }
 
         this.setState({ isActive: !this.state.isActive });
@@ -218,7 +218,6 @@ function _typeof(obj) {
       render: function render() {
 
         var styles = getStyles();
-        var override = {};
 
         if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
           Object.assign(styles.active, this.props.opts.onState.styles.buttonComponent);
