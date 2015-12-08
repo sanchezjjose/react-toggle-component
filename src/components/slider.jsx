@@ -3,33 +3,30 @@
   if (typeof define === 'function' && define.amd) {
     define([
       'react',
-      'react-addons-css-transition-group', 
-      'jquery'], 
+      'react-addons-css-transition-group'], 
       factory
     );
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
       require('react'),
-      require('react-addons-css-transition-group'),
-      require('jquery')
+      require('react-addons-css-transition-group')
     );
 
   } else {
     root.SliderComponent = factory(
       root.React,
-      root.React.addons.CSSTransitionGroup, 
-      root.jQuery
+      root.React.addons.CSSTransitionGroup
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup, $) {
+}(self, function (React, ReactCSSTransitionGroup) {
 
   return React.createClass({
 
     render: function() {
 
-      var styles = {
+      let styles = {
         base: {
           backgroundColor: '#fff',
           backgroundImage: 'none',
@@ -53,14 +50,14 @@
       };
 
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        $.extend(styles.active, this.props.opts.onState.styles.sliderComponent);
+        Object.assign(styles.active, this.props.opts.onState.styles.sliderComponent);
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        $.extend(styles.base, this.props.opts.offState.styles.sliderComponent);
+        Object.assign(styles.base, this.props.opts.offState.styles.sliderComponent);
       }
 
-      var sliderStyles = $.extend({}, styles.base, this.props.isActive && styles.active);
+      let sliderStyles = Object.assign({}, styles.base, this.props.isActive && styles.active);
 
       return (
         <div className="slider" style={sliderStyles}></div>

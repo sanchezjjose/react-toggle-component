@@ -5,15 +5,14 @@
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
-      require('react'),
-      require('jquery')
+      require('react')
     );
 
   } else {
-    root.TextComponent = factory(root.React, root.jQuery);
+    root.TextComponent = factory(root.React);
   }
 
-}(self, function (React, $) {
+}(self, function (React) {
 
   return React.createClass({
 
@@ -57,17 +56,17 @@
       };
 
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        $.extend(styles.onText, this.props.opts.onState.styles.textComponent);
+        Object.assign(styles.onText, this.props.opts.onState.styles.textComponent);
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        $.extend(styles.offText, this.props.opts.offState.styles.textComponent);
+        Object.assign(styles.offText, this.props.opts.offState.styles.textComponent);
       }
  
-      var hideOnText = !this.props.isActive && styles.active,
+      let hideOnText = !this.props.isActive && styles.active,
           hideOffText = this.props.isActive && styles.active,
-          onStateTextStyle = $.extend({}, styles.base, hideOnText || styles.onText),
-          offStateTextStyle = $.extend({}, styles.base, hideOffText || styles.offText),          
+          onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText),
+          offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText),          
           onStateTextValue = '',
           offStateTextValue = '';
 

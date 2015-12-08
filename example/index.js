@@ -43,18 +43,18 @@
     onState: {
       text: 'In',
       styles: {
-        buttonComponent: { },
-        textComponent: { },
-        sliderComponent: { }
+        buttonComponent: { backgroundColor: 'red' },
+        textComponent: { color: 'blue' },
+        sliderComponent: { backgroundColor: 'black'}
       }
     },
 
     offState: { 
       text: 'Out',
       styles: {
-        buttonComponent: { },
-        textComponent: { },
-        sliderComponent: { }
+        buttonComponent: { backgroundColor: 'yellow' },
+        textComponent: { color: 'white' },
+        sliderComponent: { backgroundColor: 'green' }
       }
     }
   };

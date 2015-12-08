@@ -4,8 +4,7 @@
     define([
       'react', 
       'react-addons-css-transition-group', 
-      'react-dom', 
-      'jquery', 
+      'react-dom',
       './slider', 
       './text', 
       '../utils/http'], 
@@ -17,7 +16,6 @@
       require('react'),
       require('react-addons-css-transition-group'),
       require('react-dom'),
-      require('jquery'),
       require('./slider'),
       require('./text'),
       require('../utils/http')
@@ -27,21 +25,20 @@
     root.ReactToggleComponent = factory(
       root.React, 
       root.React.addons.CSSTransitionGroup,
-      root.ReactDOM, 
-      root.jQuery, 
+      root.ReactDOM,
       root.SliderComponent, 
       root.TextComponent, 
       root.HttpUtil
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup, ReactDOM, $, SliderComponent, TextComponent, httpUtil) {
+}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, httpUtil) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
     function getStyles() {
 
-      var styles = {
+      let styles = {
         base: {
           backgroundColor: '#555',
           border: '1px solid #ddd',
@@ -62,7 +59,7 @@
       return styles;
     }
 
-    var ToggleButtonComponent = React.createClass({
+    let ToggleButtonComponent = React.createClass({
 
       getInitialState: function() {
 
@@ -85,17 +82,18 @@
 
       render: function() {
 
-        var styles = getStyles();
+        let styles = getStyles();
+        let override = {};
 
         if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-          $.extend(styles.active, this.props.opts.onState.styles.buttonComponent);
+          Object.assign(styles.active, this.props.opts.onState.styles.buttonComponent);
         }
 
         if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-          $.extend(styles.base, this.props.opts.offState.styles.buttonComponent);
+          Object.assign(styles.base, this.props.opts.offState.styles.buttonComponent);
         }
 
-        var toggleButtonStyles = $.extend({}, styles.base, this.state.isActive && styles.active);
+        let toggleButtonStyles = Object.assign({}, styles.base, this.state.isActive && styles.active);
 
         return (
           <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>
