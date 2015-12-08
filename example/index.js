@@ -17,13 +17,12 @@
 }(self, function (ReactToggleComponent) {
 
   function callback(data) {
-    console.log("Callback executed. Printing data from server: ");
     console.log(data);
   }
 
-  var domElement = document.getElementById('content');
+  const domElement = document.getElementById('content');
 
-  var httpRequests = {
+  const httpRequests = {
 
     onState: {
       url: 'https://randomuser.me/api',
@@ -34,9 +33,9 @@
       url: 'https://randomuser.me/api',
       postData: {}
     },
-  }
+  };
   
-  var opts = {
+  const opts = {
 
     // TODO: should there be a baseStyles object?
 
