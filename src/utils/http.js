@@ -4,7 +4,7 @@
     define(['jquery'], factory);
 
   } else if (typeof exports === 'object') {
-    module.exports = factory('jquery');
+    module.exports = factory(require('jquery'));
 
   } else {
     root.HttpUtil = factory(root.jQuery);
