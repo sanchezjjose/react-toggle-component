@@ -4,24 +4,150 @@
   <head>
     <meta charset="utf-8" />
     <title>React Toggle Component</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   </head>
   <body>
-
     <style>
-      body { text-align: center; }
+      body {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Open Sans","Helvetica Neue",sans-serif;
+      }
+      .container {
+        background: #fff;
+        padding: 30px 100px;
+        position: relative;
+      }
+      .heading {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      h2 {
+        color: #ccc;
+        font-size: 18px;
+      }
+      .example {
+        margin-bottom: 30px;
+      }
+      .example section {
+        border-top: 1px solid rgba(0,0,0,0.05);
+        padding-top: 30px;
+        position: relative;
+      }
+      .toggle-button {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 30px;
+        width: 18%;
+      }
+      .code-block {
+        display: inline-block;
+        width: 80%;
+      }
+      .code-highlight {
+        color: rgb(113, 140, 0);
+      }
+      .repeated {
+        color: #ccc;
+      }
+      pre {
+        background: rgb(249, 249, 249);
+        border-radius: 4px;
+        line-height: 1.42857;
+        margin: 0;
+        word-break: break-all;
+        word-wrap: break-word;
+      }
+      code {
+        color: rgb(66, 113, 174);
+        white-space: pre-wrap;
+      }
+      p {
+        color: rgba(0,0,0,0.9);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 300;
+        letter-spacing: 0;
+        margin: 5px;
+        text-transform: none;
+      }
     </style>
 
-    <h1>Toggle Button</h1>
+    <div class="container">
 
-    <div id="content"></div>
-   
+      <div class="heading">
+        <h1>Toggle Button Component.</h1>
+        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2>
+      </div>
+
+      <div class="example">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <section>
+          <div class="toggle-button" id="react-toggle-component-1"></div>
+          <div class="code-block">
+            <pre><code class="language-js" data-lang="js">
+  const reactToggleComponent = require('react-toggle-component');
+  const domElement = document.getElementById('react-toggle-component');
+  const isActive = true;
+  const httpRequests = {
+    onState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+    offState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+  };
+
+  function callback(data) {
+    console.log(data);
+  }
+
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests);
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div class="example">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <section>
+          <div class="toggle-button" id="react-toggle-component-2"></div>
+          <div class="code-block">
+            <pre><code class="language-js repeated" data-lang="js">
+  const reactToggleComponent = require('react-toggle-component');
+  const domElement = document.getElementById('react-toggle-component');
+  <b class="code-highlight">const isActive = false;</b>
+  const httpRequests = {
+    onState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+    offState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+  };
+
+  function callback(data) {
+    console.log(data);
+  }
+
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests);
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
   <!-- 
     <script src="./example/react-toggle-component.example.js"></script>
   -->
 
-    <script src="https://fb.me/react-with-addons-0.14.3.js"></script>
-    <script src="https://fb.me/react-dom-0.14.3.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="./dist/react-with-addons-0.14.3.js"></script>
+    <script src="./dist/react-dom-0.14.3.js"></script>
+    <script src="./dist/jquery-2.1.4.js"></script>
     <script src="./lib/utils/http.js"></script>
     <script src="./lib/components/slider.js"></script>
     <script src="./lib/components/text.js"></script>

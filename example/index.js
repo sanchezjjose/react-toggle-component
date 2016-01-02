@@ -20,7 +20,8 @@
     console.log(data);
   }
 
-  const domElement = document.getElementById('content');
+  const domElement1 = document.getElementById('react-toggle-component-1');
+  const domElement2 = document.getElementById('react-toggle-component-2');
 
   const httpRequests = {
 
@@ -58,7 +59,8 @@
     }
   };
 
-  ReactToggleComponent.init(domElement, true, callback, httpRequests, opts);
+  ReactToggleComponent.init(domElement1, true, callback, httpRequests, opts);
+  ReactToggleComponent.init(domElement2, false, callback, httpRequests, opts);
 
   return {};
     
