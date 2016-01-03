@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>React Toggle Component</title>
+    <title>Toggle Button Component</title>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
   </head>
   <body>
@@ -20,9 +20,17 @@
         margin-bottom: 30px;
         text-align: center;
       }
-      h2 {
+      .heading span {
+        font-size: 14px;
+        font-style: italic;  
+      }
+      .heading h1 {
+        margin-bottom: 0;
+      }
+      .heading h2 {
         color: #ccc;
-        font-size: 18px;
+        font-size: 20px;
+        font-weight: normal;
       }
       .example {
         margin-bottom: 30px;
@@ -32,24 +40,24 @@
         padding-top: 30px;
         position: relative;
       }
-      .toggle-button {
+      .example .toggle-button {
         display: inline-block;
         position: absolute;
         right: 0;
         top: 30px;
         width: 18%;
       }
-      .code-block {
+      .example .code-block {
         display: inline-block;
         width: 80%;
       }
-      .code-highlight {
+      .example .code-highlight {
         color: rgb(113, 140, 0);
       }
-      .repeated {
+      .example .repeated {
         color: #ccc;
       }
-      pre {
+      .example pre {
         background: rgb(249, 249, 249);
         border-radius: 4px;
         line-height: 1.42857;
@@ -57,11 +65,11 @@
         word-break: break-all;
         word-wrap: break-word;
       }
-      code {
-        color: rgb(66, 113, 174);
+      .example code {
+        color: #47515B;
         white-space: pre-wrap;
       }
-      p {
+      .example p {
         color: rgba(0,0,0,0.9);
         font-size: 16px;
         font-style: normal;
@@ -76,11 +84,17 @@
 
       <div class="heading">
         <h1>Toggle Button Component.</h1>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h2>
+        <span>(powered by React and jQuery)</span>
+        <h2>
+          A toggle button which makes http requests asynchonously. It is written as a React component, and is published to npm. It is simple to initialize on the page, and fully customizable. You simply pass it the dom element which will wrap the component, the initial state of the toggle button, an http request object containing the resource URI, and a callback that will do something with the data returned from the server. You can even fully customize the text, look and feel with a simple options argument! See below for usage examples.
+        </h2>
       </div>
 
       <div class="example">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p><b>Toggle button on.</b></p>
+        <p>
+          This is a basic example, with no customization. It's what you get out of the box, with the default color scheme and no text indicator. The state in this example is set to active, so the component is turned on.
+        </p>
         <section>
           <div class="toggle-button" id="react-toggle-component-1"></div>
           <div class="code-block">
@@ -110,7 +124,10 @@
       </div>
 
       <div class="example">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p><b>Toggle button off.</b></p>
+        <p>
+          This is a basic example, with no customization. It's what you get out of the box, with the default color scheme and no text indicator. The state in this example is set to inactive, so the component is turned off.
+        </p>
         <section>
           <div class="toggle-button" id="react-toggle-component-2"></div>
           <div class="code-block">
@@ -139,7 +156,102 @@
         </section>
       </div>
 
-    </div>
+      <div class="example">
+        <p><b>Toggle button with text label.</b></p>
+        <p>
+          Here you see how to pass an options argument containing an object for the on and off state text label. Try to toggle the button to see both labels.
+        </p>
+        <section>
+          <div class="toggle-button" id="react-toggle-component-3"></div>
+          <div class="code-block">
+            <pre><code class="language-js repeated" data-lang="js">
+  const reactToggleComponent = require('react-toggle-component');
+  const domElement = document.getElementById('react-toggle-component');
+  const isActive = false;
+  const httpRequests = {
+    onState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+    offState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+  };
+  <b class="code-highlight">
+  const opts = {
+    onState: {
+      text: 'In'
+    },
+    offState: { 
+      text: 'Out'
+    }
+  };
+  </b>
+  function callback(data) {
+    console.log(data);
+  }
+
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <b class="code-highlight">opts</b>);
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div class="example">
+        <p><b>Toggle button styling.</b></p>
+        <p>
+          Here is an example of how you can change the styles of each individual component of the toggle button. You can alter the text, slider and button individually, for both on and off states.
+        </p>
+        <section>
+          <div class="toggle-button" id="react-toggle-component-4"></div>
+          <div class="code-block">
+            <pre><code class="language-js repeated" data-lang="js">
+  const reactToggleComponent = require('react-toggle-component');
+  const domElement = document.getElementById('react-toggle-component');
+  const isActive = false;
+  const httpRequests = {
+    onState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+    offState: {
+      url: 'https://randomuser.me/api',
+      postData: {}
+    },
+  };
+  <b class="code-highlight">
+  const opts = {
+    onState: {
+      text: 'In',
+      styles: {
+        buttonComponent: { backgroundColor: 'red' },
+        textComponent: { color: '#fff' },
+        sliderComponent: { backgroundColor: '#fff'}
+      }
+    },
+
+    offState: { 
+      text: 'Out',
+      styles: {
+        buttonComponent: { backgroundColor: '#000' },
+        textComponent: { color: '#fff' },
+        sliderComponent: { backgroundColor: '#fff' }
+      }
+    }
+  };
+  </b>
+  function callback(data) {
+    console.log(data);
+  }
+
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <b class="code-highlight">opts</b>);
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+    </div> <!-- container -->
 
   <!-- 
     <script src="./example/react-toggle-component.example.js"></script>

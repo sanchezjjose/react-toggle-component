@@ -22,6 +22,8 @@
 
   const domElement1 = document.getElementById('react-toggle-component-1');
   const domElement2 = document.getElementById('react-toggle-component-2');
+  const domElement3 = document.getElementById('react-toggle-component-3');
+  const domElement4 = document.getElementById('react-toggle-component-4');
 
   const httpRequests = {
 
@@ -36,31 +38,39 @@
     },
   };
   
-  const opts = {
+  const opts1 = {
+    onState: {
+      text: 'In'
+    },
+    offState: { 
+      text: 'Out'
+    }
+  };
 
-    // TODO: should there be a baseStyles object?
-
+  const opts2 = {
     onState: {
       text: 'In',
-      // styles: {
-      //   buttonComponent: { backgroundColor: 'red' },
-      //   textComponent: { color: 'blue' },
-      //   sliderComponent: { backgroundColor: 'black'}
-      // }
+      styles: {
+        buttonComponent: { backgroundColor: 'red' },
+        textComponent: { color: '#fff' },
+        sliderComponent: { backgroundColor: '#fff'}
+      }
     },
 
     offState: { 
       text: 'Out',
-      // styles: {
-      //   buttonComponent: { backgroundColor: 'yellow' },
-      //   textComponent: { color: 'white' },
-      //   sliderComponent: { backgroundColor: 'green' }
-      // }
+      styles: {
+        buttonComponent: { backgroundColor: '#000' },
+        textComponent: { color: '#fff' },
+        sliderComponent: { backgroundColor: '#fff' }
+      }
     }
   };
 
-  ReactToggleComponent.init(domElement1, true, callback, httpRequests, opts);
-  ReactToggleComponent.init(domElement2, false, callback, httpRequests, opts);
+  ReactToggleComponent.init(domElement1, true, callback, httpRequests);
+  ReactToggleComponent.init(domElement2, false, callback, httpRequests);
+  ReactToggleComponent.init(domElement3, true, callback, httpRequests, opts1);
+  ReactToggleComponent.init(domElement4, true, callback, httpRequests, opts2);
 
   return {};
     
