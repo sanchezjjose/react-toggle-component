@@ -9,11 +9,11 @@
   <body>
     <style>
       body {
-        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Open Sans","Helvetica Neue",sans-serif;
+        font-family: "Open Sans","Helvetica Neue",sans-serif;
       }
       .container {
         background: #fff;
-        padding: 30px 100px;
+        padding: 30px 200px;
         position: relative;
       }
       .heading {
@@ -21,16 +21,24 @@
         text-align: center;
       }
       .heading span {
-        font-size: 14px;
-        font-style: italic;  
+        font-size: 12px; 
       }
-      .heading h1 {
+      .heading h3 {
         margin-bottom: 0;
+        font-size: 30px;
+        line-height: 1.12;
+        letter-spacing: -0.022em;
+        font-weight: 600;
+        font-style: normal;
       }
-      .heading h2 {
+      .heading .description {
         color: #aaa;
-        font-size: 20px;
-        font-weight: normal;
+        display: block;
+        font-size: 15px;
+        font-weight: 300;
+        margin-top: 30px;
+        text-align: left;
+        padding: 0 50px;
       }
       .example {
         margin-bottom: 30px;
@@ -53,9 +61,14 @@
       }
       .example .code-highlight {
         color: rgb(113, 140, 0);
+        font-weight: 600;
       }
       .example .repeated {
         color: #ccc;
+      }
+      .example .title {
+        font-weight: 600;
+        margin-left: 5px;
       }
       .example pre {
         background: rgb(249, 249, 249);
@@ -66,12 +79,12 @@
         word-wrap: break-word;
       }
       .example code {
-        color: #565656;
+        color: #aaa;
         white-space: pre-wrap;
       }
       .example p {
         color: rgba(0,0,0,0.9);
-        font-size: 16px;
+        font-size: 13px;
         font-style: normal;
         font-weight: 300;
         letter-spacing: 0;
@@ -83,17 +96,17 @@
     <div class="container">
 
       <div class="heading">
-        <h1>Toggle Button Component.</h1>
+        <h3>Toggle Button Component.</h3>
         <span>(powered by React and jQuery)</span>
-        <h2>
+        <strong class="description">
           A toggle button which makes http requests asynchonously. It is written as a React component, and is published to npm. It is simple to initialize on the page, and fully customizable. You simply pass it the dom element which will wrap the component, the initial state of the toggle button, an http request object containing the resource URI, and a callback that will do something with the data returned from the server. You can even fully customize the text, look and feel with a simple options argument! See below for usage examples.
-        </h2>
+        </strong>
       </div>
 
       <!-- EXAMPLE 1 -->
 
       <div class="example">
-        <p><b>Toggle button on.</b></p>
+        <div class="title">Toggle button on</div>
         <p>
           This is a basic example, with no customization. It's what you get out of the box, with the default color scheme and no text indicator. The state in this example is set to active, so the component is turned on.
         </p>
@@ -128,7 +141,7 @@
       <!-- EXAMPLE 2 -->
 
       <div class="example">
-        <p><b>Toggle button off.</b></p>
+        <div class="title">Toggle button off</div>
         <p>
           This is a basic example, with no customization. It's what you get out of the box, with the default color scheme and no text indicator. The state in this example is set to inactive, so the component is turned off.
         </p>
@@ -138,7 +151,7 @@
             <pre><code class="language-js repeated" data-lang="js">
   const reactToggleComponent = require('react-toggle-component');
   const domElement = document.getElementById('react-toggle-component');
-  <b class="code-highlight">const isActive = false;</b>
+  <span class="code-highlight">const isActive = false;</span>
   const httpRequests = {
     onState: {
       url: 'https://randomuser.me/api',
@@ -160,10 +173,10 @@
         </section>
       </div>
 
-      <!-- EXAMPLE 2 -->
+      <!-- EXAMPLE 3 -->
 
       <div class="example">
-        <p><b>Toggle button with text label.</b></p>
+        <div class="title">Toggle button with text label</div>
         <p>
           Here you see how to pass an options argument containing an object for the on and off state text label. Try to toggle the button to see both labels.
         </p>
@@ -184,7 +197,7 @@
       postData: {}
     },
   };
-  <b class="code-highlight">
+  <span class="code-highlight">
   const opts = {
     onState: {
       text: 'On'
@@ -193,12 +206,12 @@
       text: 'Off'
     }
   };
-  </b>
+  </span>
   function callback(data) {
     console.log(data);
   }
 
-  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <b class="code-highlight">opts</b>);
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <span class="code-highlight">opts</span>);
             </code></pre>
           </div>
         </section>
@@ -207,7 +220,7 @@
       <!-- EXAMPLE 4 -->
 
       <div class="example">
-        <p><b>Toggle button styling.</b></p>
+        <div class="title">Toggle button styling</div>
         <p>
           Here is an example of how you can change the styles of each individual component of the toggle button. You can alter the text, slider and button individually, for both on and off states.
         </p>
@@ -228,7 +241,7 @@
       postData: {}
     },
   };
-  <b class="code-highlight">
+  <span class="code-highlight">
   const opts = {
     onState: {
       text: 'In',
@@ -248,12 +261,12 @@
       }
     }
   };
-  </b>
+  </span>
   function callback(data) {
     console.log(data);
   }
 
-  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <b class="code-highlight">opts</b>);
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <span class="code-highlight">opts</span>);
             </code></pre>
           </div>
         </section>
@@ -262,7 +275,7 @@
       <!-- EXAMPLE 5 -->
 
       <div class="example">
-        <p><b>Slider transition, and button styling.</b></p>
+        <div class="title">Slider transition, and button styling</div>
         <p>
           This example shows a different style, color scheme, and faster, snappier transition between the on and off states.
         </p>
@@ -283,7 +296,7 @@ const reactToggleComponent = require('react-toggle-component');
       postData: {}
     },
   };
-  <b class="code-highlight">
+  <span class="code-highlight">
   const opts = {
     onState: {
       styles: {
@@ -318,18 +331,16 @@ const reactToggleComponent = require('react-toggle-component');
       }
     }
   };
-  </b>
+  </span>
   function callback(data) {
     console.log(data);
   }
 
-  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <b class="code-highlight">opts</b>);
+  reactToggleComponent.init(domElement, isActive, callback, httpRequests, <span class="code-highlight">opts</span>);
             </code></pre>
           </div>
         </section>
       </div>
-
-
 
     </div> <!-- container -->
 
