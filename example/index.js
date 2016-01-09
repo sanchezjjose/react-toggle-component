@@ -20,13 +20,13 @@
     console.log(data);
   }
 
-  const domElement1 = document.getElementById('react-toggle-component-1');
-  const domElement2 = document.getElementById('react-toggle-component-2');
-  const domElement3 = document.getElementById('react-toggle-component-3');
-  const domElement4 = document.getElementById('react-toggle-component-4');
-  const domElement5 = document.getElementById('react-toggle-component-5');
+  var domElement1 = document.getElementById('react-toggle-component-1');
+  var domElement2 = document.getElementById('react-toggle-component-2');
+  var domElement3 = document.getElementById('react-toggle-component-3');
+  var domElement4 = document.getElementById('react-toggle-component-4');
+  var domElement5 = document.getElementById('react-toggle-component-5');
 
-  const httpRequests = {
+  var httpRequests = {
 
     onState: {
       url: 'https://randomuser.me/api',
@@ -39,7 +39,7 @@
     },
   };
   
-  const opts1 = {
+  var opts1 = {
     onState: {
       text: 'On'
     },
@@ -48,7 +48,7 @@
     }
   };
 
-  const opts2 = {
+  var opts2 = {
     onState: {
       text: 'In',
       styles: {
@@ -68,7 +68,7 @@
     }
   };
 
-  const opts3 = {
+  var opts3 = {
     onState: {
       styles: {
         buttonComponent: {
