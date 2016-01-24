@@ -19,69 +19,78 @@
     render: function() {
 
       const styles = {
-        base: {
-          color: '#ddd',
+
+        common: {
           fontSize: '15px',
           fontWeight: 'normal',
           top: '11px',
           textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
           MozUserSelect: 'none',
-          MozTransition: 'opacity 500ms ease-in',
           msUserSelect: 'none',
-          msTransition: 'opacity 500ms ease-in',
-          opacity: '1',
           position: 'absolute',
           right: '18px',
           WebkitUserSelect: 'none',
-          WebkitTransition: 'opacity 500ms ease-in'
+
+          opacity: '1'
         },
-        active: {
-          MozTransition: 'opacity 500ms ease-in',
-          msTransition: 'opacity 500ms ease-in',
-          opacity: '0',
-          visibility: 'hidden',
-          WebkitTransition: 'opacity 500ms ease-in'
-        },
-        onText: {
+
+        onState: {
           color: '#fff',
           left: '30px',
           right: 'auto',
-          textShadow: '0 1px 0 rgba(0,0,0,0.5)'
+          textShadow: '0 1px 0 rgba(0,0,0,0.5)',
+
+          MozTransition: 'opacity 1000ms ease-in',
+          msTransition: 'opacity 1000ms ease-in',
+          // visibility: 'hidden',
+          WebkitTransition: 'opacity 1000ms ease-in'
         },
-        offText: {
+        
+        offState: {
           color: '#ddd',
-          textShadow: '0 1px 0 rgba(0,0,0,0.2)'
+          textShadow: '0 1px 0 rgba(0,0,0,0.2)',
+
+          MozTransition: 'opacity 1000ms ease-in',
+          msTransition: 'opacity 1000ms ease-in',
+          // opacity: '1',
+          WebkitTransition: 'opacity 1000ms ease-in'
         }
       };
 
+      let textValue = '';
+
+      if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+        Object.assign(styles.common, this.props.opts.common.styles.textComponent);
+      }
+
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        Object.assign(styles.onText, this.props.opts.onState.styles.textComponent);
+        
+        if (this.props.opts.onState.styles) {
+          Object.assign(styles.onState, this.props.opts.onState.styles.textComponent);
+        }
+
+        if (this.props.isActive && this.props.opts.onState.text) {
+          textValue = this.props.opts.onState.text;
+        }
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        Object.assign(styles.offText, this.props.opts.offState.styles.textComponent);
-      }
- 
-      const hideOnText = !this.props.isActive && styles.active;
-      const hideOffText = this.props.isActive && styles.active;
-      const onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText);
-      const offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText);       
-      let onStateTextValue = '';
-      let offStateTextValue = '';
+        
+        if (this.props.opts.offState.styles) {
+          Object.assign(styles.offState, this.props.opts.offState.styles.textComponent);
+        }
 
-      if (this.props.opts && this.props.opts.onState) {
-        onStateTextValue = this.props.opts.onState.text;
+        if (!this.props.isActive && this.props.opts.offState.text) {
+          textValue = this.props.opts.offState.text;
+        }
       }
 
-      if (this.props.opts && this.props.opts.offState) {
-        offStateTextValue = this.props.opts.offState.text;
-      }
+      const textStyle = Object.assign({}, styles.offState, this.props.isActive && styles.onState, styles.common);   
 
       return (
         <div>
-          <p className="onText status" style={onStateTextStyle}> {onStateTextValue} </p>
-          <p className="offText status" style={offStateTextStyle}> {offStateTextValue} </p>
+          <span className="buttonText" style={textStyle}> {textValue} </span>
         </div>
       );
     }

@@ -40,35 +40,51 @@
   };
   
   var opts1 = {
+
     onState: {
       text: 'On'
     },
+
     offState: { 
       text: 'Off'
     }
   };
 
   var opts2 = {
+
+    common: {
+      styles: {
+        textComponent: { 
+          color: '#fff',
+          fontSize: '14'
+        },
+        sliderComponent: { 
+          backgroundColor: '#fff' 
+        }
+      }
+    },
+
     onState: {
       text: 'In',
       styles: {
-        buttonComponent: { backgroundColor: '#d2112e' },
-        textComponent: { color: '#fff' },
-        sliderComponent: { backgroundColor: '#fff'}
+        buttonComponent: { 
+          backgroundColor: '#d2112e' 
+        }
       }
     },
 
     offState: { 
       text: 'Out',
       styles: {
-        buttonComponent: { backgroundColor: '#000' },
-        textComponent: { color: '#fff' },
-        sliderComponent: { backgroundColor: '#fff' }
+        buttonComponent: { 
+          backgroundColor: '#000' 
+        }
       }
     }
   };
 
   var opts3 = {
+
     onState: {
       styles: {
         buttonComponent: {

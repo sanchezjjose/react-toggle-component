@@ -7,7 +7,8 @@
       'react-dom',
       './slider', 
       './text', 
-      '../utils/http'], 
+      '../utils/http',
+      'jquery'], 
       factory
     );
 
@@ -18,7 +19,8 @@
       require('react-dom'),
       require('./slider'),
       require('./text'),
-      require('../utils/http')
+      require('../utils/http'),
+      require('jquery')
     );
 
   } else {
@@ -28,19 +30,20 @@
       root.ReactDOM,
       root.SliderComponent, 
       root.TextComponent, 
-      root.HttpUtil
+      root.HttpUtil,
+      root.jQuery
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil) {
+}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
     function getStyles() {
 
       let styles = {
-        base: {
-          backgroundColor: '#555',
+
+        common: {
           border: '1px solid #ddd',
           borderRadius: '50px',
           cursor: 'pointer',
@@ -51,7 +54,12 @@
           textTransform: 'uppercase',
           width: '100px'
         },
-        active: {
+
+        offState: {
+          backgroundColor: '#555'
+        },
+
+        onState: {
           backgroundColor: '#28c891'
         }
       };
@@ -68,7 +76,7 @@
         };
       },
 
-      handleClick: function() {
+      handleClick: function(elem) {
 
         if (this.state.isActive) {
           HttpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
@@ -84,15 +92,19 @@
 
         const styles = getStyles();
 
+        if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+          Object.assign(styles.common, this.props.opts.common.styles.buttonComponent);
+        }
+
         if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-          Object.assign(styles.active, this.props.opts.onState.styles.buttonComponent);
+          Object.assign(styles.onState, this.props.opts.onState.styles.buttonComponent);
         }
 
         if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-          Object.assign(styles.base, this.props.opts.offState.styles.buttonComponent);
+          Object.assign(styles.offState, this.props.opts.offState.styles.buttonComponent);
         }
 
-        const toggleButtonStyles = Object.assign({}, styles.base, this.state.isActive && styles.active);
+        const toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
 
         return (
           <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>

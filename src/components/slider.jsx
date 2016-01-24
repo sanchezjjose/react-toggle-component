@@ -27,7 +27,8 @@
     render: function() {
 
       const styles = {
-        base: {
+
+        common: {
           backgroundColor: '#fff',
           backgroundImage: 'none',
           border: '1px solid #ececec',
@@ -39,25 +40,33 @@
           height: '100%',
           position: 'relative',
           top: '-1px',
-          transform: 'translate(0px, 0px)',
           transition: 'transform 0.4s ease',
           width: '40px',
           WebkitBoxShadow: 'none'
         },
-        active: {
+
+        onState: {
           transform: 'translate(60px, 0px)'
+        },
+
+        offState: {
+          transform: 'translate(0px, 0px)'
         }
       };
 
+      if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+        Object.assign(styles.common, this.props.opts.common.styles.sliderComponent);
+      }
+
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        Object.assign(styles.active, this.props.opts.onState.styles.sliderComponent);
+        Object.assign(styles.onState, this.props.opts.onState.styles.sliderComponent);
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        Object.assign(styles.base, this.props.opts.offState.styles.sliderComponent);
+        Object.assign(styles.offState, this.props.opts.offState.styles.sliderComponent);
       }
 
-      const sliderStyles = Object.assign({}, styles.base, this.props.isActive && styles.active);
+      const sliderStyles = Object.assign({}, styles.offState, this.props.isActive && styles.onState, styles.common);
 
       return (
         <div className="slider" style={sliderStyles}></div>
