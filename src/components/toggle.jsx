@@ -107,7 +107,7 @@
         const toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
 
         return (
-          <div className="toggleButton" onClick={this.handleClick} style={toggleButtonStyles}>
+          <div onClick={this.handleClick} style={toggleButtonStyles}>
             <SliderComponent isActive={this.state.isActive} opts={this.props.opts} />
             <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
           </div>

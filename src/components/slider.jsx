@@ -69,7 +69,7 @@
       const sliderStyles = Object.assign({}, styles.offState, this.props.isActive && styles.onState, styles.common);
 
       return (
-        <div className="slider" style={sliderStyles}></div>
+        <div style={sliderStyles}></div>
       );
     }
   });

@@ -85,19 +85,28 @@
 
   var opts3 = {
 
-    onState: {
+    common: {
       styles: {
         buttonComponent: {
-          backgroundColor: '#38677e',
           width: '80'
         },
         sliderComponent: { 
           height: '30',
-          left: '5',
           top: '4',
-          transform: 'translate(40px, 0px)',
           transition: 'transform 0.1s ease',
           width: '30'
+        }
+      }
+    },
+
+    onState: {
+      styles: {
+        buttonComponent: {
+          backgroundColor: '#38677e'
+        },
+        sliderComponent: { 
+          left: '5',
+          transform: 'translate(40px, 0px)'
         }
       }
     },
@@ -105,15 +114,10 @@
     offState: { 
       styles: {
         buttonComponent: {  
-          backgroundColor: '#bbb',
-          width: '80'
+          backgroundColor: '#bbb'
         },
         sliderComponent: { 
-          height: '30',
-          left: '3',
-          top: '4',
-          transition: 'transform 0.1s ease',
-          width: '30'
+          left: '3'
         }
       }
     }
