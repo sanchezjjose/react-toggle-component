@@ -160,21 +160,33 @@
   };
   <span class="code-highlight">
   const opts = {
+    common: {
+      styles: {
+        textComponent: { 
+          color: '#fff',
+          fontSize: '14'
+        },
+        sliderComponent: { 
+          backgroundColor: '#fff' 
+        }
+      }
+    },
+
     onState: {
       text: 'In',
       styles: {
-        buttonComponent: { backgroundColor: '#d2112e' },
-        textComponent: { color: '#fff' },
-        sliderComponent: { backgroundColor: '#fff'}
+        buttonComponent: { 
+          backgroundColor: '#d2112e' 
+        }
       }
     },
 
     offState: { 
       text: 'Out',
       styles: {
-        buttonComponent: { backgroundColor: '#000' },
-        textComponent: { color: '#fff' },
-        sliderComponent: { backgroundColor: '#fff' }
+        buttonComponent: { 
+          backgroundColor: '#000' 
+        }
       }
     }
   };
@@ -215,19 +227,28 @@ const reactToggleComponent = require('react-toggle-component');
   };
   <span class="code-highlight">
   const opts = {
-    onState: {
+    common: {
       styles: {
         buttonComponent: {
-          backgroundColor: '#38677e',
           width: '80'
         },
         sliderComponent: { 
           height: '30',
-          left: '5',
           top: '4',
-          transform: 'translate(40px, 0px)',
           transition: 'transform 0.1s ease',
           width: '30'
+        }
+      }
+    },
+
+    onState: {
+      styles: {
+        buttonComponent: {
+          backgroundColor: '#38677e'
+        },
+        sliderComponent: { 
+          left: '5',
+          transform: 'translate(40px, 0px)'
         }
       }
     },
@@ -235,15 +256,10 @@ const reactToggleComponent = require('react-toggle-component');
     offState: { 
       styles: {
         buttonComponent: {  
-          backgroundColor: '#bbb',
-          width: '80'
+          backgroundColor: '#bbb'
         },
         sliderComponent: { 
-          height: '30',
-          left: '3',
-          top: '4',
-          transition: 'transform 0.1s ease',
-          width: '30'
+          left: '3'
         }
       }
     }
