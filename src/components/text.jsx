@@ -36,29 +36,36 @@
         },
 
         onState: {
+          color: '#fff',
+          left: '25px',
+          right: 'auto'
+        },
+
+        offState: {
+          color: '#ddd',
+          right: '18px',
+          left: 'auto'
+        },
+
+        visible: {
           opacity: '1',
           visibility: 'visible'
         },
         
-        offState: {
+        hidden: {
           opacity: '0',
           visibility: 'hidden'
-        },
-
-        onStateText: {
-          color: '#fff',
-          left: '30px',
-          right: 'auto'
-        },
-
-        offStateText: {
-          color: '#ddd',
-          right: '18px'
         }
       };
 
-      let onStateText = '';
-      let offStateText = '';
+      // TODO: ES6 method here to use make this immutable
+      let onStateTextLabel = '';
+      let offStateTextLabel = '';
+
+      if (this.props.opts) {
+        onStateTextLabel = this.props.opts.onState.text;
+        offStateTextLabel = this.props.opts.offState.text;
+      }
 
       if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
         Object.assign(styles.common, this.props.opts.common.styles.textComponent);
@@ -66,23 +73,22 @@
 
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
         Object.assign(styles.onState, this.props.opts.onState.styles.textComponent);
-        onStateText = this.props.opts.onState.text;
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
         Object.assign(styles.offState, this.props.opts.offState.styles.textComponent);
-        offStateText = this.props.opts.offState.text;
       }
 
-      const onStateTextVisible = this.props.isActive ? styles.onState : styles.offState;
-      const offStateTextVisible = this.props.isActive ? styles.offState : styles.onState;
-      const onStateTextStyle = Object.assign({}, styles.onStateText, onStateTextVisible, styles.common);   
-      const offStateTextStyle = Object.assign({}, styles.offStateText, offStateTextVisible, styles.common);   
+      const onStateTextVisible = this.props.isActive ? styles.visible : styles.hidden;
+      const offStateTextVisible = this.props.isActive ? styles.hidden : styles.visible;
+
+      const onStateTextStyle = Object.assign({}, onStateTextVisible, styles.onState, styles.common);   
+      const offStateTextStyle = Object.assign({}, offStateTextVisible, styles.offState, styles.common);   
 
       return (
         <div>
-          <span style={onStateTextStyle}> {onStateText} </span>
-          <span style={offStateTextStyle}> {offStateText} </span>
+          <span style={onStateTextStyle}> {onStateTextLabel} </span>
+          <span style={offStateTextStyle}> {offStateTextLabel} </span>
         </div>
       );
     }

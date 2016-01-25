@@ -67,6 +67,9 @@
     onState: {
       text: 'In',
       styles: {
+        textComponent: {
+          left: '30'
+        },
         buttonComponent: { 
           backgroundColor: '#d2112e' 
         }
@@ -76,6 +79,9 @@
     offState: { 
       text: 'Out',
       styles: {
+        textComponent: {
+          right: '20'
+        },
         buttonComponent: { 
           backgroundColor: '#000' 
         }
