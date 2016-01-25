@@ -23,7 +23,8 @@ function _typeof(obj) {
     render: function render() {
 
       var styles = {
-        base: {
+
+        common: {
           backgroundColor: '#fff',
           backgroundImage: 'none',
           border: '1px solid #ececec',
@@ -35,27 +36,35 @@ function _typeof(obj) {
           height: '100%',
           position: 'relative',
           top: '-1px',
-          transform: 'translate(0px, 0px)',
           transition: 'transform 0.4s ease',
           width: '40px',
           WebkitBoxShadow: 'none'
         },
-        active: {
+
+        onState: {
           transform: 'translate(60px, 0px)'
+        },
+
+        offState: {
+          transform: 'translate(0px, 0px)'
         }
       };
 
+      if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+        Object.assign(styles.common, this.props.opts.common.styles.sliderComponent);
+      }
+
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        Object.assign(styles.active, this.props.opts.onState.styles.sliderComponent);
+        Object.assign(styles.onState, this.props.opts.onState.styles.sliderComponent);
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        Object.assign(styles.base, this.props.opts.offState.styles.sliderComponent);
+        Object.assign(styles.offState, this.props.opts.offState.styles.sliderComponent);
       }
 
-      var sliderStyles = Object.assign({}, styles.base, this.props.isActive && styles.active);
+      var sliderStyles = Object.assign({}, styles.offState, this.props.isActive && styles.onState, styles.common);
 
-      return React.createElement('div', { className: 'slider', style: sliderStyles });
+      return React.createElement('div', { style: sliderStyles });
     }
   });
 });
@@ -85,66 +94,67 @@ function _typeof(obj) {
     render: function render() {
 
       var styles = {
-        base: {
-          color: '#ddd',
+
+        common: {
           fontSize: '15px',
           fontWeight: 'normal',
           top: '11px',
           textShadow: '0 1px 0 rgba(0,0,0,0.2)',
           margin: '0',
-          MozUserSelect: 'none',
-          MozTransition: 'opacity 500ms ease-in',
-          msUserSelect: 'none',
-          msTransition: 'opacity 500ms ease-in',
-          opacity: '1',
           position: 'absolute',
-          right: '18px',
+          msUserSelect: 'none',
+          MozUserSelect: 'none',
           WebkitUserSelect: 'none',
-          WebkitTransition: 'opacity 500ms ease-in'
+          msTransition: 'opacity 500ms ease-out',
+          MozTransition: 'opacity 500ms ease-out',
+          WebkitTransition: 'opacity 500ms ease-out'
         },
-        active: {
-          MozTransition: 'opacity 500ms ease-in',
-          msTransition: 'opacity 500ms ease-in',
+
+        onState: {
+          opacity: '1',
+          visibility: 'visible'
+        },
+
+        offState: {
           opacity: '0',
-          visibility: 'hidden',
-          WebkitTransition: 'opacity 500ms ease-in'
+          visibility: 'hidden'
         },
-        onText: {
+
+        onStateText: {
           color: '#fff',
           left: '30px',
-          right: 'auto',
-          textShadow: '0 1px 0 rgba(0,0,0,0.5)'
+          right: 'auto'
         },
-        offText: {
+
+        offStateText: {
           color: '#ddd',
-          textShadow: '0 1px 0 rgba(0,0,0,0.2)'
+          right: '18px'
         }
       };
 
+      var onStateText = '';
+      var offStateText = '';
+
+      if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+        Object.assign(styles.common, this.props.opts.common.styles.textComponent);
+      }
+
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        Object.assign(styles.onText, this.props.opts.onState.styles.textComponent);
+        Object.assign(styles.onState, this.props.opts.onState.styles.textComponent);
+        onStateText = this.props.opts.onState.text;
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        Object.assign(styles.offText, this.props.opts.offState.styles.textComponent);
+        Object.assign(styles.offState, this.props.opts.offState.styles.textComponent);
+        offStateText = this.props.opts.offState.text;
       }
 
-      var hideOnText = !this.props.isActive && styles.active;
-      var hideOffText = this.props.isActive && styles.active;
-      var onStateTextStyle = Object.assign({}, styles.base, hideOnText || styles.onText);
-      var offStateTextStyle = Object.assign({}, styles.base, hideOffText || styles.offText);
-      var onStateTextValue = '';
-      var offStateTextValue = '';
+      var onStateTextVisible = this.props.isActive ? styles.onState : styles.offState;
+      var offStateTextVisible = this.props.isActive ? styles.offState : styles.onState;
+      var onStateTextStyle = Object.assign({}, styles.onStateText, onStateTextVisible, styles.common);
+      var offStateTextStyle = Object.assign({}, styles.offStateText, offStateTextVisible, styles.common);
 
-      if (this.props.opts && this.props.opts.onState) {
-        onStateTextValue = this.props.opts.onState.text;
-      }
-
-      if (this.props.opts && this.props.opts.offState) {
-        offStateTextValue = this.props.opts.offState.text;
-      }
-
-      return React.createElement('div', null, React.createElement('p', { className: 'onText status', style: onStateTextStyle }, ' ', onStateTextValue, ' '), React.createElement('p', { className: 'offText status', style: offStateTextStyle }, ' ', offStateTextValue, ' '));
+      return React.createElement('div', null, React.createElement('span', { style: onStateTextStyle }, ' ', onStateText, ' '), React.createElement('span', { style: offStateTextStyle }, ' ', offStateText, ' '));
     }
   });
 });
@@ -161,21 +171,21 @@ function _typeof(obj) {
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['react', 'react-addons-css-transition-group', 'react-dom', './slider', './text', '../utils/http'], factory);
+    define(['react', 'react-addons-css-transition-group', 'react-dom', './slider', './text', '../utils/http', 'jquery'], factory);
   } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
-    module.exports = factory(require('react'), require('react-addons-css-transition-group'), require('react-dom'), require('./slider'), require('./text'), require('../utils/http'));
+    module.exports = factory(require('react'), require('react-addons-css-transition-group'), require('react-dom'), require('./slider'), require('./text'), require('../utils/http'), require('jquery'));
   } else {
-    root.ReactToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil);
+    root.ReactToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil, root.jQuery);
   }
-})(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil) {
+})(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
     function getStyles() {
 
       var styles = {
-        base: {
-          backgroundColor: '#555',
+
+        common: {
           border: '1px solid #ddd',
           borderRadius: '50px',
           cursor: 'pointer',
@@ -186,7 +196,12 @@ function _typeof(obj) {
           textTransform: 'uppercase',
           width: '100px'
         },
-        active: {
+
+        offState: {
+          backgroundColor: '#555'
+        },
+
+        onState: {
           backgroundColor: '#28c891'
         }
       };
@@ -204,7 +219,7 @@ function _typeof(obj) {
         };
       },
 
-      handleClick: function handleClick() {
+      handleClick: function handleClick(elem) {
 
         if (this.state.isActive) {
           HttpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
@@ -219,17 +234,21 @@ function _typeof(obj) {
 
         var styles = getStyles();
 
+        if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+          Object.assign(styles.common, this.props.opts.common.styles.buttonComponent);
+        }
+
         if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-          Object.assign(styles.active, this.props.opts.onState.styles.buttonComponent);
+          Object.assign(styles.onState, this.props.opts.onState.styles.buttonComponent);
         }
 
         if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-          Object.assign(styles.base, this.props.opts.offState.styles.buttonComponent);
+          Object.assign(styles.offState, this.props.opts.offState.styles.buttonComponent);
         }
 
-        var toggleButtonStyles = Object.assign({}, styles.base, this.state.isActive && styles.active);
+        var toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
 
-        return React.createElement('div', { className: 'toggleButton', onClick: this.handleClick, style: toggleButtonStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
+        return React.createElement('div', { onClick: this.handleClick, style: toggleButtonStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
       }
     });
 
@@ -241,7 +260,7 @@ function _typeof(obj) {
   };
 });
 
-},{"../utils/http":5,"./slider":1,"./text":2,"react":171,"react-addons-css-transition-group":8,"react-dom":9}],4:[function(require,module,exports){
+},{"../utils/http":5,"./slider":1,"./text":2,"jquery":7,"react":171,"react-addons-css-transition-group":8,"react-dom":9}],4:[function(require,module,exports){
 'use strict'
 
 // CommonJS is sufficient, as this file is only used by browserify
