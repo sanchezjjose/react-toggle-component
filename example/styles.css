@@ -30,6 +30,9 @@ body {
   text-align: left;
   padding: 0 30px;
 }
+.heading .github-link {
+  font-size: 13px;
+}
 .example {
   margin-bottom: 30px;
 }
