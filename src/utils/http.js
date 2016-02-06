@@ -10,7 +10,7 @@
     root.HttpUtil = factory(root.jQuery);
   }
 
-}(self, function ($) {
+}(Function("return this")(), function ($) {
 
   return {
 

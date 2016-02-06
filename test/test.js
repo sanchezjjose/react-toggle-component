@@ -1,11 +1,22 @@
-'use strict';
+import React from 'react';
+import {createRenderer} from 'react-addons-test-utils';
+import ToggleButtonComponent from '../lib/components/toggle.js';
 
-var expect = require('chai').expect;
-var toggleButton = require('../REMOVE_ME');
+const expect = require('chai').expect;
+
 
 describe('#test', function() {
     it('should pass', function() {
-        toggleButton(100);
-        expect(true).to.equal(true);
+      let renderer = createRenderer();
+      let opts = {};
+
+      console.log(renderer);
+      
+      renderer.render(<ToggleButtonComponent opts={opts}/>);
+
+      let actualElement = renderer.getRenderOutput();
+      console.log(actualElement);
+
+      expect(true).to.equal(true);
     });
 });

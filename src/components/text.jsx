@@ -12,7 +12,7 @@
     root.TextComponent = factory(root.React);
   }
 
-}(self, function (React) {
+}(Function("return this")(), function (React) {
 
   return React.createClass({
 

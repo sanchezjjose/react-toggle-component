@@ -20,7 +20,7 @@
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup) {
+}(Function("return this")(), function (React, ReactCSSTransitionGroup) {
 
   return React.createClass({
 

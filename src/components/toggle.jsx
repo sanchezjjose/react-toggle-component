@@ -35,7 +35,8 @@
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
+// background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
+}(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
