@@ -29,6 +29,7 @@
     "build:all": "npm run build:dev && npm run build:min && npm run build:example",
     "lint": "jshint lib/components/*.js",
     "test": "mocha --reporter spec --compilers js:babel-register",
+    "test:watch": "mocha --reporter spec --compilers js:babel-register --watch --reporter min",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
   "dependencies": {
