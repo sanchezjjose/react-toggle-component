@@ -4,20 +4,11 @@ import Component from '../lib/components/toggle.js';
 
 const expect = require('chai').expect;
 
-const domElement = <div class="toggle-button" id="react-toggle-component-3"></div>;
-
+// const domElement = <div class="toggle-button" id="react-toggle-component"></div>;
 const isActive = true;
-
 const httpRequests = {
-  onState: {
-    url: 'https://randomuser.me/api',
-    postData: {}
-  },
-
-  offState: {
-    url: 'https://randomuser.me/api',
-    postData: {}
-  }
+  onState: { url: 'https://randomuser.me/api', postData: {} },
+  offState: { url: 'https://randomuser.me/api', postData: {} }
 };
 
 function callback(data) {
@@ -25,27 +16,22 @@ function callback(data) {
 }
 
 describe('#test', function() {
-    it('should pass', function() {
+  it('should pass', function() {
 
-      let ToggleButtonComponent = Component.getComponent();
-      let renderer = createRenderer();
-      let opts = {};
+    let ToggleButtonComponent = Component;
+    let renderer = createRenderer();
+    let opts = {};
 
-      console.log(ToggleButtonComponent);
-      
-      var actualRender = renderer.render(
-        <ToggleButtonComponent 
-          isActive={isActive} 
-          callback={callback} 
-          httpRequests={httpRequests} 
-          opts={opts} />
-      );
+    console.log(ToggleButtonComponent);
+    
+    renderer.render(<ToggleButtonComponent isActive={isActive} callback={callback} httpRequests={httpRequests} opts={opts} />);
 
-      console.log(actualRender);
+    let actualElement = renderer.getRenderOutput();
+    console.log(actualRender);
 
-      // let actualElement = renderer.getRenderOutput();
-      // console.log(actualElement);
+    // let actualElement = renderer.getRenderOutput();
+    // console.log(actualElement);
 
-      expect(true).to.equal(true);
-    });
+    expect(true).to.equal(true);
+  });
 });

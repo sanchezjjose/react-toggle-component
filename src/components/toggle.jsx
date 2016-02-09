@@ -91,8 +91,6 @@
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
-    console.log(ToggleButtonComponent);
-
     ReactDOM.render(
 
       <ToggleButtonComponent 
@@ -107,10 +105,7 @@
 
   return {
     init : init,
-
-    getComponent: function() {
-      return ToggleButtonComponent;
-    }
+    ToggleButtonComponent: ToggleButtonComponent
   };
 
 }));
