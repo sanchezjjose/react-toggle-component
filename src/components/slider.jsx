@@ -3,56 +3,33 @@
   if (typeof define === 'function' && define.amd) {
     define([
       'react',
-      'react-addons-css-transition-group'], 
+      'react-addons-css-transition-group',
+      '../styles/styles'], 
       factory
     );
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
       require('react'),
-      require('react-addons-css-transition-group')
+      require('react-addons-css-transition-group'),
+      require('../styles/styles')
     );
 
   } else {
     root.SliderComponent = factory(
       root.React,
-      root.React.addons.CSSTransitionGroup
+      root.React.addons.CSSTransitionGroup,
+      root.ReactToggleComponentStyles
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup) {
+}(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactToggleComponentStyles) {
 
   return React.createClass({
 
     render: function() {
 
-      const styles = {
-
-        common: {
-          backgroundColor: '#fff',
-          backgroundImage: 'none',
-          border: '1px solid #ececec',
-          borderColor: '#dfdfdf',
-          borderRadius: '50px',
-          bottom: '-1px',
-          boxShadow: 'none',
-          display: 'block',
-          height: '100%',
-          position: 'relative',
-          top: '-1px',
-          transition: 'transform 0.4s ease',
-          width: '40px',
-          WebkitBoxShadow: 'none'
-        },
-
-        onState: {
-          transform: 'translate(60px, 0px)'
-        },
-
-        offState: {
-          transform: 'translate(0px, 0px)'
-        }
-      };
+      const styles = new ReactToggleComponentStyles().sliderComponent();
 
       if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
         Object.assign(styles.common, this.props.opts.common.styles.sliderComponent);

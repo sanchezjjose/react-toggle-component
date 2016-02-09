@@ -8,6 +8,7 @@
       './slider', 
       './text', 
       '../utils/http',
+      '../styles/styles',
       'jquery'], 
       factory
     );
@@ -20,109 +21,71 @@
       require('./slider'),
       require('./text'),
       require('../utils/http'),
+      require('../styles/styles'),
       require('jquery')
     );
 
   } else {
-    root.ReactToggleComponent = factory(
+    root.ToggleButtonComponent = factory(
       root.React, 
       root.React.addons.CSSTransitionGroup,
       root.ReactDOM,
       root.SliderComponent, 
       root.TextComponent, 
       root.HttpUtil,
+      root.ReactToggleComponentStyles,
       root.jQuery
     );
   }
 
-}(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
+// background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
+}(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, ReactToggleComponentStyles, $) {
 
-  function init(domElement, isActive, callback, httpRequests, opts) {
+  return React.createClass({
 
-    function getStyles() {
+    getInitialState: function() {
 
-      let styles = {
-
-        common: {
-          border: '1px solid #ddd',
-          borderRadius: '50px',
-          cursor: 'pointer',
-          display: 'inline-block',
-          fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
-          height: '40px',
-          position: 'relative',
-          textTransform: 'uppercase',
-          width: '100px'
-        },
-
-        offState: {
-          backgroundColor: '#555'
-        },
-
-        onState: {
-          backgroundColor: '#28c891'
-        }
+      return { 
+        isActive: this.props.isActive
       };
+    },
 
-      return styles;
-    }
+    handleClick: function(elem) {
 
-    const ToggleButtonComponent = React.createClass({
+      if (this.state.isActive) {
+        HttpUtil.POST(this.props.httpRequests.onState.url, this.props.httpRequests.onState.postData, this.props.callback);
 
-      getInitialState: function() {
-
-        return { 
-          isActive: isActive
-        };
-      },
-
-      handleClick: function(elem) {
-
-        if (this.state.isActive) {
-          HttpUtil.POST(httpRequests.onState.url, httpRequests.onState.postData, callback);
-
-        } else {
-          HttpUtil.POST(httpRequests.offState.url, httpRequests.offState.postData, callback);
-        }
-
-        this.setState({ isActive: !this.state.isActive });
-      },
-
-      render: function() {
-
-        const styles = getStyles();
-
-        if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
-          Object.assign(styles.common, this.props.opts.common.styles.buttonComponent);
-        }
-
-        if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-          Object.assign(styles.onState, this.props.opts.onState.styles.buttonComponent);
-        }
-
-        if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-          Object.assign(styles.offState, this.props.opts.offState.styles.buttonComponent);
-        }
-
-        const toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
-
-        return (
-          <div onClick={this.handleClick} style={toggleButtonStyles}>
-            <SliderComponent isActive={this.state.isActive} opts={this.props.opts} />
-            <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
-          </div>
-        );
+      } else {
+        HttpUtil.POST(this.props.httpRequests.offState.url, this.props.httpRequests.offState.postData, this.props.callback);
       }
-    });
 
-    ReactDOM.render(
-      <ToggleButtonComponent opts={opts} />,
-      domElement
-    );
-  }
+      this.setState({ isActive: !this.state.isActive });
+    },
 
-  return {
-    init : init
-  };
+    render: function() {
 
+      const styles = new ReactToggleComponentStyles().toggleComponent();
+
+      if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
+        Object.assign(styles.common, this.props.opts.common.styles.buttonComponent);
+      }
+
+      if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
+        Object.assign(styles.onState, this.props.opts.onState.styles.buttonComponent);
+      }
+
+      if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
+        Object.assign(styles.offState, this.props.opts.offState.styles.buttonComponent);
+      }
+
+      const toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
+
+      return (
+        <div onClick={this.handleClick} style={toggleButtonStyles}>
+          <SliderComponent isActive={this.state.isActive} opts={this.props.opts} />
+          <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
+        </div>
+      );
+    }
+  });
 }));
