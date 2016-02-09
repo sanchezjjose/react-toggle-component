@@ -18,7 +18,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   } else {
     root.SliderComponent = factory(root.React, root.React.addons.CSSTransitionGroup);
   }
-})(self, function (React, ReactCSSTransitionGroup) {
+})(Function("return this")(), function (React, ReactCSSTransitionGroup) {
 
   return React.createClass({
 
@@ -91,7 +91,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   } else {
     root.TextComponent = factory(root.React);
   }
-})(self, function (React) {
+})(Function("return this")(), function (React) {
 
   return React.createClass({
 
@@ -189,7 +189,9 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   } else {
     root.ReactToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil, root.jQuery);
   }
-})(self, function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
+
+  // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
+})(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, $) {
 
   function init(domElement, isActive, callback, httpRequests, opts) {
 
@@ -299,7 +301,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   } else {
     root.HttpUtil = factory(root.jQuery);
   }
-})(self, function ($) {
+})(Function("return this")(), function ($) {
 
   return {
 
