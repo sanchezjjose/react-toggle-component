@@ -26,7 +26,7 @@
     );
 
   } else {
-    root.ReactToggleComponent = factory(
+    root.ToggleButtonComponent = factory(
       root.React, 
       root.React.addons.CSSTransitionGroup,
       root.ReactDOM,
@@ -41,7 +41,7 @@
 // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
 }(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, ReactToggleComponentStyles, $) {
 
-  const ToggleButtonComponent = React.createClass({
+  return React.createClass({
 
     getInitialState: function() {
 
@@ -88,24 +88,4 @@
       );
     }
   });
-
-  function init(domElement, isActive, callback, httpRequests, opts) {
-
-    ReactDOM.render(
-
-      <ToggleButtonComponent 
-        isActive={isActive} 
-        callback={callback} 
-        httpRequests={httpRequests} 
-        opts={opts} />,
-
-      domElement
-    );
-  }
-
-  return {
-    init : init,
-    ToggleButtonComponent: ToggleButtonComponent
-  };
-
 }));

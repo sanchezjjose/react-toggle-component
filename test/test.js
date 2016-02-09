@@ -22,15 +22,21 @@ describe('#test', function() {
     let renderer = createRenderer();
     let opts = {};
 
+    console.log("ToggleButtonComponent: ");
     console.log(ToggleButtonComponent);
     
-    renderer.render(<ToggleButtonComponent isActive={isActive} callback={callback} httpRequests={httpRequests} opts={opts} />);
+    console.log("Rendering....");
+    renderer.render(
+      <ToggleButtonComponent 
+        isActive={isActive} 
+        callback={callback} 
+        httpRequests={httpRequests} 
+        opts={opts} />
+    );
 
     let actualElement = renderer.getRenderOutput();
+    console.log("Actual: ");
     console.log(actualRender);
-
-    // let actualElement = renderer.getRenderOutput();
-    // console.log(actualElement);
 
     expect(true).to.equal(true);
   });
