@@ -1,43 +1,49 @@
 import React from 'react';
 import {createRenderer} from 'react-addons-test-utils';
-import Component from '../lib/components/toggle.js';
 
-const expect = require('chai').expect;
+import 'babel-polyfill';
+import expect from 'expect';
 
-// const domElement = <div class="toggle-button" id="react-toggle-component"></div>;
-const isActive = true;
-const httpRequests = {
-  onState: { url: 'https://randomuser.me/api', postData: {} },
-  offState: { url: 'https://randomuser.me/api', postData: {} }
-};
+// https://blog.algolia.com/how-we-unit-test-react-components-using-expect-jsx/
+// import expectJSX from 'expect-jsx';
+// expect.extend(expectJSX);
 
-function callback(data) {
-  console.log(data);
-}
+import ToggleComponent from '../lib/components/toggle.js';
+import SliderComponent from '../lib/components/slider.js';
+import TextComponent from '../lib/components/text.js';
 
-describe('#test', function() {
-  it('should pass', function() {
 
-    let ToggleButtonComponent = Component;
-    let renderer = createRenderer();
-    let opts = {};
+describe('#SliderComponent', function() {
+  it('should have correct element properties', function() {
 
-    console.log("ToggleButtonComponent: ");
-    console.log(ToggleButtonComponent);
+    const isActive = true;
+
+    const opts = {
+      common: {
+        styles: {
+          sliderComponent: { 
+            backgroundColor: 'red' 
+          }
+        }
+      }
+    }
     
-    console.log("Rendering....");
-    renderer.render(
-      <ToggleButtonComponent 
-        isActive={isActive} 
-        callback={callback} 
-        httpRequests={httpRequests} 
-        opts={opts} />
-    );
+    const httpRequests = {
+      onState: { url: 'https://randomuser.me/api', postData: {} },
+      offState: { url: 'https://randomuser.me/api', postData: {} }
+    };
 
-    let actualElement = renderer.getRenderOutput();
-    console.log("Actual: ");
-    console.log(actualRender);
+    function callback(data) {
+      console.log(data);
+    };
 
-    expect(true).to.equal(true);
+    const renderer = createRenderer();
+
+    renderer.render(<SliderComponent opts={opts} />);
+
+    const actualOutput = renderer.getRenderOutput();
+
+    expect(actualOutput.type).toEqual('div');
+    expect(actualOutput.props.style.backgroundColor).toEqual('red');
   });
 });
