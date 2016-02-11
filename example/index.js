@@ -3,11 +3,11 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['../lib/index'], factory);
+    define(['../lib/main'], factory);
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
-      require('../lib/index')
+      require('../lib/main')
     );
 
   } else {
