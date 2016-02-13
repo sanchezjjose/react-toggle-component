@@ -25,7 +25,11 @@ var Fixture = {
         sliderComponent: { },
         textComponent: { },
       }
-    }
+    },
+
+    onState: {},
+
+    offState: {}
   }
 };
 

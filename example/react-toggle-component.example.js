@@ -65,11 +65,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onState: {
       text: 'In',
       styles: {
+        toggleComponent: {
+          backgroundColor: '#d2112e'
+        },
         textComponent: {
           left: '30'
-        },
-        buttonComponent: {
-          backgroundColor: '#d2112e'
         }
       }
     },
@@ -77,11 +77,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     offState: {
       text: 'Out',
       styles: {
+        toggleComponent: {
+          backgroundColor: '#000'
+        },
         textComponent: {
           right: '20'
-        },
-        buttonComponent: {
-          backgroundColor: '#000'
         }
       }
     }
@@ -91,7 +91,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     common: {
       styles: {
-        buttonComponent: {
+        toggleComponent: {
           width: '80'
         },
         sliderComponent: {
@@ -105,7 +105,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     onState: {
       styles: {
-        buttonComponent: {
+        toggleComponent: {
           backgroundColor: '#38677e'
         },
         sliderComponent: {
@@ -117,7 +117,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     offState: {
       styles: {
-        buttonComponent: {
+        toggleComponent: {
           backgroundColor: '#bbb'
         },
         sliderComponent: {
@@ -261,7 +261,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
     module.exports = factory(require('react'), require('react-addons-css-transition-group'), require('react-dom'), require('./slider'), require('./text'), require('../utils/http'), require('../styles/styles'), require('jquery'));
   } else {
-    root.ToggleButtonComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil, root.ReactToggleComponentStyles, root.jQuery);
+    root.ToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil, root.ReactToggleComponentStyles, root.jQuery);
   }
 
   // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
@@ -292,20 +292,20 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
       var styles = new ReactToggleComponentStyles().toggleComponent();
 
       if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
-        Object.assign(styles.common, this.props.opts.common.styles.buttonComponent);
+        Object.assign(styles.common, this.props.opts.common.styles.toggleComponent);
       }
 
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        Object.assign(styles.onState, this.props.opts.onState.styles.buttonComponent);
+        Object.assign(styles.onState, this.props.opts.onState.styles.toggleComponent);
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        Object.assign(styles.offState, this.props.opts.offState.styles.buttonComponent);
+        Object.assign(styles.offState, this.props.opts.offState.styles.toggleComponent);
       }
 
-      var toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
+      var toggleComponentStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
 
-      return React.createElement('div', { onClick: this.handleClick, style: toggleButtonStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
+      return React.createElement('div', { onClick: this.handleClick, style: toggleComponentStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
     }
   });
 });
@@ -328,17 +328,17 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
   } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
     module.exports = factory(require('react-dom'), require('./components/toggle'));
   } else {
-    root.ReactToggleComponent = factory(root.ReactDOM, root.ToggleButtonComponent);
+    root.ReactToggleComponent = factory(root.ReactDOM, root.ToggleComponent);
   }
 
   // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
-})(Function("return this")(), function (ReactDOM, ToggleButtonComponent) {
+})(Function("return this")(), function (ReactDOM, ToggleComponent) {
 
   return {
 
     init: function init(domElement, isActive, callback, httpRequests, opts) {
 
-      ReactDOM.render(React.createElement(ToggleButtonComponent, {
+      ReactDOM.render(React.createElement(ToggleComponent, {
         isActive: isActive,
         callback: callback,
         httpRequests: httpRequests,
