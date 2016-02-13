@@ -3,11 +3,11 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['../lib/index'], factory);
+    define(['../lib/main'], factory);
 
   } else if (typeof exports === 'object') {
     module.exports = factory(
-      require('../lib/index')
+      require('../lib/main')
     );
 
   } else {
@@ -67,11 +67,11 @@
     onState: {
       text: 'In',
       styles: {
+        toggleComponent: { 
+          backgroundColor: '#d2112e' 
+        },
         textComponent: {
           left: '30'
-        },
-        buttonComponent: { 
-          backgroundColor: '#d2112e' 
         }
       }
     },
@@ -79,11 +79,11 @@
     offState: { 
       text: 'Out',
       styles: {
+        toggleComponent: { 
+          backgroundColor: '#000' 
+        },
         textComponent: {
           right: '20'
-        },
-        buttonComponent: { 
-          backgroundColor: '#000' 
         }
       }
     }
@@ -93,7 +93,7 @@
 
     common: {
       styles: {
-        buttonComponent: {
+        toggleComponent: {
           width: '80'
         },
         sliderComponent: { 
@@ -107,7 +107,7 @@
 
     onState: {
       styles: {
-        buttonComponent: {
+        toggleComponent: {
           backgroundColor: '#38677e'
         },
         sliderComponent: { 
@@ -119,7 +119,7 @@
 
     offState: { 
       styles: {
-        buttonComponent: {  
+        toggleComponent: {  
           backgroundColor: '#bbb'
         },
         sliderComponent: { 
