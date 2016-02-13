@@ -26,7 +26,7 @@
     );
 
   } else {
-    root.ToggleButtonComponent = factory(
+    root.ToggleComponent = factory(
       root.React, 
       root.React.addons.CSSTransitionGroup,
       root.ReactDOM,
@@ -67,21 +67,21 @@
       const styles = new ReactToggleComponentStyles().toggleComponent();
 
       if (this.props.opts && this.props.opts.common && this.props.opts.common.styles) {
-        Object.assign(styles.common, this.props.opts.common.styles.buttonComponent);
+        Object.assign(styles.common, this.props.opts.common.styles.toggleComponent);
       }
 
       if (this.props.opts && this.props.opts.onState && this.props.opts.onState.styles) {
-        Object.assign(styles.onState, this.props.opts.onState.styles.buttonComponent);
+        Object.assign(styles.onState, this.props.opts.onState.styles.toggleComponent);
       }
 
       if (this.props.opts && this.props.opts.offState && this.props.opts.offState.styles) {
-        Object.assign(styles.offState, this.props.opts.offState.styles.buttonComponent);
+        Object.assign(styles.offState, this.props.opts.offState.styles.toggleComponent);
       }
 
-      const toggleButtonStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
+      const toggleComponentStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
 
       return (
-        <div onClick={this.handleClick} style={toggleButtonStyles}>
+        <div onClick={this.handleClick} style={toggleComponentStyles}>
           <SliderComponent isActive={this.state.isActive} opts={this.props.opts} />
           <TextComponent isActive={this.state.isActive} opts={this.props.opts} />
         </div>

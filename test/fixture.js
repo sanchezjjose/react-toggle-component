@@ -21,7 +21,7 @@ var Fixture = {
   opts: { 
     common: {
       styles: {
-        buttonComponent: { },
+        toggleComponent: { },
         sliderComponent: { },
         textComponent: { },
       }

@@ -16,12 +16,12 @@
   } else {
     root.ReactToggleComponent = factory(
       root.ReactDOM,
-      root.ToggleButtonComponent
+      root.ToggleComponent
     );
   }
 
 // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
-}(Function("return this")(), function (ReactDOM, ToggleButtonComponent) {
+}(Function("return this")(), function (ReactDOM, ToggleComponent) {
 
   return {
 
@@ -29,7 +29,7 @@
 
       ReactDOM.render(
 
-        <ToggleButtonComponent 
+        <ToggleComponent 
           isActive={isActive} 
           callback={callback} 
           httpRequests={httpRequests} 
