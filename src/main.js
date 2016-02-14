@@ -1,16 +1,16 @@
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     define([
-      'react-dom',
-      './components/toggle'], 
+      "react-dom",
+      "./components/toggle"], 
       factory
     );
 
-  } else if (typeof exports === 'object') {
+  } else if (typeof exports === "object") {
     module.exports = factory(
-      require('react-dom'),
-      require('./components/toggle')
+      require("react-dom"),
+      require("./components/toggle")
     );
 
   } else {
