@@ -1,18 +1,18 @@
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     define([
-      'react',
-      'react-addons-css-transition-group',
-      '../styles/styles'], 
+      "react",
+      "react-addons-css-transition-group",
+      "../styles/styles"], 
       factory
     );
 
-  } else if (typeof exports === 'object') {
+  } else if (typeof exports === "object") {
     module.exports = factory(
-      require('react'),
-      require('react-addons-css-transition-group'),
-      require('../styles/styles')
+      require("react"),
+      require("react-addons-css-transition-group"),
+      require("../styles/styles")
     );
 
   } else {

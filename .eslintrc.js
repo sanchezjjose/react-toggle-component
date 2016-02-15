@@ -16,15 +16,23 @@ module.exports = {
     "semi": [
       2,
       "always"
-    ]
+    ],
+    "react/jsx-uses-vars": 1
   },
   "env": {
     "es6": true,
-    "node": false,
-    "browser": true
+    "node": true,
+    "amd": true,
+    "browser": true,
+    "mocha": true
   },
-  "ecmaFeatures": {
-    "modules": true
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
+  "plugins": [
+    "react"
+  ],
   "extends": "eslint:recommended"
 };

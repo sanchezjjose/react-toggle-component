@@ -28,16 +28,10 @@
     init: function (domElement, isActive, callback, httpRequests, opts) {
 
       ReactDOM.render(
-
-        <ToggleComponent 
-          isActive={isActive} 
-          callback={callback} 
-          httpRequests={httpRequests} 
-          opts={opts} />,
-
+        <ToggleComponent isActive={isActive} callback={callback} httpRequests={httpRequests} opts={opts} />,
         domElement
       );
     }    
-  }
+  };
 
 }));
