@@ -14,6 +14,15 @@ http://sanchezjjose.github.io/react-toggle-component
 ```
 npm install react-toggle-component
 ```
+or download one of the following distributions and drop it on the page:
+
+```
+dist/react-toggle-component.dev.js
+```
+
+```
+dist/react-toggle-component.min.js
+```
 
 ### Usage
 
@@ -21,6 +30,18 @@ Initialize with `ReactToggleComponent`:
 
 - Browser: `window.ReactToggleComponent`
 - CommonJS and NodeJS: `const ReactToggleComponent = require("react-toggle-component")`
+
+```
+ReactToggleComponent.init(document.body, true, function(){ console.log('init!!!') }, {
+  onState: {
+    url: 'https://randomuser.me/api', postData: {}
+  },
+
+  offState: {
+    url: 'https://randomuser.me/api', postData: {}
+  },
+});
+```
 
 # Options
 
