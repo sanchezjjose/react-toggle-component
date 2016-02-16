@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -11,10 +11,10 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['react', 'react-addons-css-transition-group', '../styles/styles'], factory);
-  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
-    module.exports = factory(require('react'), require('react-addons-css-transition-group'), require('../styles/styles'));
+  if (typeof define === "function" && define.amd) {
+    define(["react", "react-addons-css-transition-group", "../styles/styles"], factory);
+  } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+    module.exports = factory(require("react"), require("react-addons-css-transition-group"), require("../styles/styles"));
   } else {
     root.SliderComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactToggleComponentStyles);
   }
@@ -40,13 +40,13 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
       var sliderStyles = Object.assign({}, styles.offState, this.props.isActive && styles.onState, styles.common);
 
-      return React.createElement('div', { style: sliderStyles });
+      return React.createElement("div", { style: sliderStyles });
     }
   });
 });
 
 },{"../styles/styles":5,"react":172,"react-addons-css-transition-group":9}],2:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -58,10 +58,10 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['react', 'jquery', '../styles/styles'], factory);
-  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
-    module.exports = factory(require('react'), require('../styles/styles'));
+  if (typeof define === "function" && define.amd) {
+    define(["react", "jquery", "../styles/styles"], factory);
+  } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+    module.exports = factory(require("react"), require("../styles/styles"));
   } else {
     root.TextComponent = factory(root.React, root.ReactToggleComponentStyles);
   }
@@ -74,8 +74,8 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
       var styles = new ReactToggleComponentStyles().textComponent();
 
       // TODO: ES6 method here to use make this immutable
-      var onStateTextLabel = '';
-      var offStateTextLabel = '';
+      var onStateTextLabel = "";
+      var offStateTextLabel = "";
 
       if (this.props.opts) {
         onStateTextLabel = this.props.opts.onState.text;
@@ -100,13 +100,13 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
       var onStateTextStyle = Object.assign({}, onStateTextVisible, styles.onState, styles.common);
       var offStateTextStyle = Object.assign({}, offStateTextVisible, styles.offState, styles.common);
 
-      return React.createElement('div', null, React.createElement('span', { style: onStateTextStyle }, ' ', onStateTextLabel, ' '), React.createElement('span', { style: offStateTextStyle }, ' ', offStateTextLabel, ' '));
+      return React.createElement("div", null, React.createElement("span", { style: onStateTextStyle }, " ", onStateTextLabel, " "), React.createElement("span", { style: offStateTextStyle }, " ", offStateTextLabel, " "));
     }
   });
 });
 
 },{"../styles/styles":5,"react":172}],3:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -118,16 +118,16 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['react', 'react-addons-css-transition-group', 'react-dom', './slider', './text', '../utils/http', '../styles/styles', 'jquery'], factory);
-  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
-    module.exports = factory(require('react'), require('react-addons-css-transition-group'), require('react-dom'), require('./slider'), require('./text'), require('../utils/http'), require('../styles/styles'), require('jquery'));
+  if (typeof define === "function" && define.amd) {
+    define(["react", "react-addons-css-transition-group", "react-dom", "./slider", "./text", "../utils/http", "../styles/styles", "jquery"], factory);
+  } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+    module.exports = factory(require("react"), require("react-addons-css-transition-group"), require("react-dom"), require("./slider"), require("./text"), require("../utils/http"), require("../styles/styles"));
   } else {
-    root.ToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil, root.ReactToggleComponentStyles, root.jQuery);
+    root.ToggleComponent = factory(root.React, root.React.addons.CSSTransitionGroup, root.ReactDOM, root.SliderComponent, root.TextComponent, root.HttpUtil, root.ReactToggleComponentStyles);
   }
 
   // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
-})(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, ReactToggleComponentStyles, $) {
+})(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, ReactToggleComponentStyles) {
 
   return React.createClass({
 
@@ -138,7 +138,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
       };
     },
 
-    handleClick: function handleClick(elem) {
+    handleClick: function handleClick() {
 
       if (this.state.isActive) {
         HttpUtil.POST(this.props.httpRequests.onState.url, this.props.httpRequests.onState.postData, this.props.callback);
@@ -167,13 +167,13 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
       var toggleComponentStyles = Object.assign({}, styles.offState, this.state.isActive && styles.onState, styles.common);
 
-      return React.createElement('div', { onClick: this.handleClick, style: toggleComponentStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
+      return React.createElement("div", { onClick: this.handleClick, style: toggleComponentStyles }, React.createElement(SliderComponent, { isActive: this.state.isActive, opts: this.props.opts }), React.createElement(TextComponent, { isActive: this.state.isActive, opts: this.props.opts }));
     }
   });
 });
 
-},{"../styles/styles":5,"../utils/http":6,"./slider":1,"./text":2,"jquery":8,"react":172,"react-addons-css-transition-group":9,"react-dom":10}],4:[function(require,module,exports){
-'use strict';
+},{"../styles/styles":5,"../utils/http":6,"./slider":1,"./text":2,"react":172,"react-addons-css-transition-group":9,"react-dom":10}],4:[function(require,module,exports){
+"use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -185,32 +185,28 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['react-dom', './components/toggle'], factory);
-  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
-    module.exports = factory(require('react-dom'), require('./components/toggle'));
+  if (typeof define === "function" && define.amd) {
+    define(["react", "react-dom", "./components/toggle"], factory);
+  } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+    module.exports = factory(require("react"), require("react-dom"), require("./components/toggle"));
   } else {
-    root.ReactToggleComponent = factory(root.ReactDOM, root.ToggleComponent);
+    root.ReactToggleComponent = factory(root.React, root.ReactDOM, root.ToggleComponent);
   }
 
   // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
-})(Function("return this")(), function (ReactDOM, ToggleComponent) {
+})(Function("return this")(), function (React, ReactDOM, ToggleComponent) {
 
   return {
 
     init: function init(domElement, isActive, callback, httpRequests, opts) {
 
-      ReactDOM.render(React.createElement(ToggleComponent, {
-        isActive: isActive,
-        callback: callback,
-        httpRequests: httpRequests,
-        opts: opts }), domElement);
+      ReactDOM.render(React.createElement(ToggleComponent, { isActive: isActive, callback: callback, httpRequests: httpRequests, opts: opts }), domElement);
     }
   };
 });
 
-},{"./components/toggle":3,"react-dom":10}],5:[function(require,module,exports){
-'use strict';
+},{"./components/toggle":3,"react":172,"react-dom":10}],5:[function(require,module,exports){
+"use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -222,9 +218,9 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     define([], factory);
-  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
+  } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
     module.exports = factory();
   } else {
     root.ReactToggleComponentStyles = factory();
@@ -238,23 +234,23 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
     return {
 
       common: {
-        border: '1px solid #ddd',
-        borderRadius: '50px',
-        cursor: 'pointer',
-        display: 'inline-block',
-        fontFamily: '"Helvetica Neue","Helvetica",arial,sans-serif',
-        height: '40px',
-        position: 'relative',
-        textTransform: 'uppercase',
-        width: '100px'
+        border: "1px solid #ddd",
+        borderRadius: "50px",
+        cursor: "pointer",
+        display: "inline-block",
+        fontFamily: "'Helvetica Neue','Helvetica',arial,sans-serif",
+        height: "40px",
+        position: "relative",
+        textTransform: "uppercase",
+        width: "100px"
       },
 
       offState: {
-        backgroundColor: '#555'
+        backgroundColor: "#555"
       },
 
       onState: {
-        backgroundColor: '#28c891'
+        backgroundColor: "#28c891"
       }
     };
   };
@@ -264,28 +260,28 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
     return {
 
       common: {
-        backgroundColor: '#fff',
-        backgroundImage: 'none',
-        border: '1px solid #ececec',
-        borderColor: '#dfdfdf',
-        borderRadius: '50px',
-        bottom: '-1px',
-        boxShadow: 'none',
-        display: 'block',
-        height: '100%',
-        position: 'relative',
-        top: '-1px',
-        transition: 'transform 0.4s ease',
-        width: '40px',
-        WebkitBoxShadow: 'none'
+        backgroundColor: "#fff",
+        backgroundImage: "none",
+        border: "1px solid #ececec",
+        borderColor: "#dfdfdf",
+        borderRadius: "50px",
+        bottom: "-1px",
+        boxShadow: "none",
+        display: "block",
+        height: "100%",
+        position: "relative",
+        top: "-1px",
+        transition: "transform 0.4s ease",
+        width: "40px",
+        WebkitBoxShadow: "none"
       },
 
       onState: {
-        transform: 'translate(60px, 0px)'
+        transform: "translate(60px, 0px)"
       },
 
       offState: {
-        transform: 'translate(0px, 0px)'
+        transform: "translate(0px, 0px)"
       }
     };
   };
@@ -295,40 +291,40 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
     return {
 
       common: {
-        fontSize: '15px',
-        fontWeight: 'normal',
-        top: '11px',
-        textShadow: '0 1px 0 rgba(0,0,0,0.2)',
-        margin: '0',
-        position: 'absolute',
-        msUserSelect: 'none',
-        MozUserSelect: 'none',
-        WebkitUserSelect: 'none',
-        msTransition: 'opacity 500ms ease-out',
-        MozTransition: 'opacity 500ms ease-out',
-        WebkitTransition: 'opacity 500ms ease-out'
+        fontSize: "15px",
+        fontWeight: "normal",
+        top: "11px",
+        textShadow: "0 1px 0 rgba(0,0,0,0.2)",
+        margin: "0",
+        position: "absolute",
+        msUserSelect: "none",
+        MozUserSelect: "none",
+        WebkitUserSelect: "none",
+        msTransition: "opacity 500ms ease-out",
+        MozTransition: "opacity 500ms ease-out",
+        WebkitTransition: "opacity 500ms ease-out"
       },
 
       onState: {
-        color: '#fff',
-        left: '25px',
-        right: 'auto'
+        color: "#fff",
+        left: "25px",
+        right: "auto"
       },
 
       offState: {
-        color: '#ddd',
-        right: '18px',
-        left: 'auto'
+        color: "#ddd",
+        right: "18px",
+        left: "auto"
       },
 
       visible: {
-        opacity: '1',
-        visibility: 'visible'
+        opacity: "1",
+        visibility: "visible"
       },
 
       hidden: {
-        opacity: '0',
-        visibility: 'hidden'
+        opacity: "0",
+        visibility: "hidden"
       }
     };
   };
@@ -337,7 +333,7 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 });
 
 },{}],6:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -349,10 +345,10 @@ var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "sym
 
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery'], factory);
-  } else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
-    module.exports = factory(require('jquery'));
+  if (typeof define === "function" && define.amd) {
+    define(["jquery"], factory);
+  } else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === "object") {
+    module.exports = factory(require("jquery"));
   } else {
     root.HttpUtil = factory(root.jQuery);
   }
