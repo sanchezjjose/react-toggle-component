@@ -2,7 +2,7 @@
   "name": "@sanchezjjose/react-toggle-component",
   "description": "A react toggle component.",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
-  "version": "0.5.1",
+  "version": "0.5.3",
   "main": "./lib/main.js",
   "license": "MIT",
   "repository": {
