@@ -32,7 +32,7 @@
     "build:min": "npm --loglevel=silent run build -- | uglifyjs -cmvb beautify=false,ascii_only=true - > dist/react-toggle-component.min.js",
     "build:example": "browserify -t babelify example/index.js -s ReactToggleComponent > example/react-toggle-component.example.js",
     "build:all": "npm run build:dev && npm run build:min && npm run build:example",
-    "lint": "eslint src/** src/*/*",
+    "lint": "eslint src/** src/*/* lib/** lib/*/*",
     "test": "mocha --reporter spec --compilers js:babel-register",
     "test:watch": "mocha --reporter spec --compilers js:babel-register --watch --reporter min",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec --compilers js:babel-register test/*"
