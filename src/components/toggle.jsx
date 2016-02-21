@@ -1,28 +1,27 @@
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     define([
-      'react', 
-      'react-addons-css-transition-group', 
-      'react-dom',
-      './slider', 
-      './text', 
-      '../utils/http',
-      '../styles/styles',
-      'jquery'], 
+      "react", 
+      "react-addons-css-transition-group", 
+      "react-dom",
+      "./slider", 
+      "./text", 
+      "../utils/http",
+      "../styles/styles",
+      "jquery"], 
       factory
     );
 
-  } else if (typeof exports === 'object') {
+  } else if (typeof exports === "object") {
     module.exports = factory(
-      require('react'),
-      require('react-addons-css-transition-group'),
-      require('react-dom'),
-      require('./slider'),
-      require('./text'),
-      require('../utils/http'),
-      require('../styles/styles'),
-      require('jquery')
+      require("react"),
+      require("react-addons-css-transition-group"),
+      require("react-dom"),
+      require("./slider"),
+      require("./text"),
+      require("../utils/http"),
+      require("../styles/styles")
     );
 
   } else {
@@ -33,13 +32,12 @@
       root.SliderComponent, 
       root.TextComponent, 
       root.HttpUtil,
-      root.ReactToggleComponentStyles,
-      root.jQuery
+      root.ReactToggleComponentStyles
     );
   }
 
 // background: http://stackoverflow.com/questions/3277182/how-to-get-the-global-object-in-javascript
-}(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, ReactToggleComponentStyles, $) {
+}(Function("return this")(), function (React, ReactCSSTransitionGroup, ReactDOM, SliderComponent, TextComponent, HttpUtil, ReactToggleComponentStyles) {
 
   return React.createClass({
 
@@ -50,7 +48,7 @@
       };
     },
 
-    handleClick: function(elem) {
+    handleClick: function() {
 
       if (this.state.isActive) {
         HttpUtil.POST(this.props.httpRequests.onState.url, this.props.httpRequests.onState.postData, this.props.callback);

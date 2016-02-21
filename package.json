@@ -2,7 +2,7 @@
   "name": "@sanchezjjose/react-toggle-component",
   "description": "A react toggle component.",
   "author": "Jose Sanchez <sanchezjjose@gmail.com>",
-  "version": "0.5.0",
+  "version": "0.5.4",
   "main": "./lib/main.js",
   "license": "MIT",
   "repository": {
@@ -18,16 +18,21 @@
     "toggle",
     "button"
   ],
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "scripts": {
     "compile": "babel --presets es2015,react -d lib/ src/",
     "watch": "babel --presets es2015,react --watch src/ --out-dir lib/",
     "prepublish": "npm run compile && npm run build:all",
-    "build": "browserify -t babelify lib/main.js",
+    "build": "browserify -t babelify lib/main.js -s ReactToggleComponent",
     "build:dev": "npm --loglevel=silent run build > dist/react-toggle-component.dev.js",
     "build:min": "npm --loglevel=silent run build -- | uglifyjs -cmvb beautify=false,ascii_only=true - > dist/react-toggle-component.min.js",
     "build:example": "browserify -t babelify example/index.js -s ReactToggleComponent > example/react-toggle-component.example.js",
     "build:all": "npm run build:dev && npm run build:min && npm run build:example",
-    "lint": "jshint lib/components/*.js",
+    "lint": "eslint src/** src/*/* lib/** lib/*/*",
     "test": "mocha --reporter spec --compilers js:babel-register",
     "test:watch": "mocha --reporter spec --compilers js:babel-register --watch --reporter min",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec --compilers js:babel-register test/*"
@@ -49,10 +54,12 @@
     "browserify": "^13.0.0",
     "chai": "^3.4.0",
     "coveralls": "^2.11.4",
+    "eslint": "^2.0.0",
+    "eslint-plugin-react": "^3.16.1",
     "expect": "^1.14.0",
     "expect-jsx": "^2.3.0",
+    "ghooks": "^1.0.3",
     "istanbul": "^0.4.0",
-    "jshint": "^2.7.0",
     "mocha": "^2.3.3",
     "uglify-js": "^2.4.20"
   }

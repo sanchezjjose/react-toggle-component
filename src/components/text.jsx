@@ -1,12 +1,12 @@
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['react', 'jquery', '../styles/styles'], factory);
+  if (typeof define === "function" && define.amd) {
+    define(["react", "jquery", "../styles/styles"], factory);
 
-  } else if (typeof exports === 'object') {
+  } else if (typeof exports === "object") {
     module.exports = factory(
-      require('react'),
-      require('../styles/styles')
+      require("react"),
+      require("../styles/styles")
     );
 
   } else {
@@ -22,8 +22,8 @@
       const styles = new ReactToggleComponentStyles().textComponent();
 
       // TODO: ES6 method here to use make this immutable
-      let onStateTextLabel = '';
-      let offStateTextLabel = '';
+      let onStateTextLabel = "";
+      let offStateTextLabel = "";
 
       if (this.props.opts) {
         onStateTextLabel = this.props.opts.onState.text;
