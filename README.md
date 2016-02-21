@@ -33,7 +33,7 @@ Initialize with `ReactToggleComponent`:
 
 Example:
 
-```
+```javascript
 var domElement = document.body;
 
 var initialStateOn = true;
@@ -57,7 +57,7 @@ var httpRequests = {
 ReactToggleComponent.init(domElement, initialStateOn, callback, httpRequests);
 ```
 
-The callback accepts a data object containing the response data. The httpRequests variable contains 2 objects, one for the on state, and the other for the off state, each accepting their own url and post data object.
+The domElement parameter represents the html element the component will be injected into. The initialState parameter is a boolean representing initial state of the toggle button. The callback accepts a data object containing the response data. The httpRequests variable contains 2 objects, one for the on state, and the other for the off state, each accepting their own url and post data object.
 
 # Options
 
@@ -69,7 +69,7 @@ The following objects can be set on the options parameter.
 
 This object applies styles to both the on and off states.
 
-```
+```javascript
 common: {
   styles: {
     textComponent: { 
@@ -87,7 +87,7 @@ common: {
 
 This object applies styles and a text label only to the on state.
 
-```
+```javascript
 onState: {
   text: 'In',
   styles: {
@@ -105,7 +105,7 @@ onState: {
 
 This object applies styles and a text label only to the off state.
 
-```
+```javascript
 offState: { 
   text: 'Out',
   styles: {
@@ -123,7 +123,7 @@ offState: {
 
 The styles object can be set on the common, onState and offState objects, as shown above. It can be used to set styles on the components indepedently. It accepts inline styles based on React formatting. Read more here https://facebook.github.io/react/tips/inline-styles.html.
 
-```
+```javascript
 styles: {
   toggleComponent: { 
     // inline styles here 
