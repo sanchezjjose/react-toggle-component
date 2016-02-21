@@ -85,7 +85,7 @@ common: {
 
 ### onState
 
-This object applies styles only to the on state.
+This object applies styles and a text label only to the on state.
 
 ```
 onState: {
@@ -103,7 +103,7 @@ onState: {
 
 ### offState
 
-This object applies styles only to the off state.
+This object applies styles and a text label only to the off state.
 
 ```
 offState: { 
