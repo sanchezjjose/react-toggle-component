@@ -27,6 +27,9 @@
         height: "40px",
         position: "relative",
         textTransform: "uppercase",
+        msUserSelect: "none",
+        MozUserSelect: "none",
+        WebkitUserSelect: "none",
         width: "100px"
       },
 
@@ -56,16 +59,25 @@
         height: "100%",
         position: "relative",
         top: "-1px",
+        msTransition: "transform 0.4s ease",
+        MozTransition: "transform 0.4s ease",
+        WebkitTransition: "-webkit-transform 0.4s ease",
         transition: "transform 0.4s ease",
         width: "40px",
         WebkitBoxShadow: "none"
       },
 
       onState: {
+        msTransform: "translate(60px, 0px)",
+        MozTransform: "translate(60px, 0px)",
+        WebkitTransform: "translate(60px, 0px)",
         transform: "translate(60px, 0px)"
       },
 
       offState: {
+        msTransform: "translate(0px, 0px)",
+        MozTransform: "translate(0px, 0px)",
+        WebkitTransform: "translate(0px, 0px)",
         transform: "translate(0px, 0px)"
       }
     };
@@ -87,7 +99,8 @@
         WebkitUserSelect: "none",
         msTransition: "opacity 500ms ease-out",
         MozTransition: "opacity 500ms ease-out",
-        WebkitTransition: "opacity 500ms ease-out"
+        WebkitTransition: "opacity 500ms ease-out",
+        transition: "opacity 500ms ease-out"
       },
 
       onState: {
