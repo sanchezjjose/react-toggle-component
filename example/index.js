@@ -99,6 +99,9 @@
         sliderComponent: { 
           height: '30',
           top: '4',
+          msTransition: 'transform 0.1s ease',
+          MozTransition: 'transform 0.1s ease',
+          WebkitTransition: '-webkit-transform 0.1s ease',
           transition: 'transform 0.1s ease',
           width: '30'
         }
@@ -112,6 +115,9 @@
         },
         sliderComponent: { 
           left: '5',
+          msTransform: 'translate(40px, 0px)',
+          MozTransform: 'translate(40px, 0px)',
+          WebkitTransform: 'translate(40px, 0px)',
           transform: 'translate(40px, 0px)'
         }
       }

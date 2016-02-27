@@ -248,7 +248,9 @@
         sliderComponent: { 
           height: '30',
           top: '4',
-          transition: 'transform 0.1s ease',
+          msTransition: 'transform 0.1s ease',
+          MozTransition: 'transform 0.1s ease',
+          WebkitTransition: '-webkit-transform 0.1s ease',
           width: '30'
         }
       }
@@ -261,7 +263,9 @@
         },
         sliderComponent: { 
           left: '5',
-          transform: 'translate(40px, 0px)'
+          msTransform: 'translate(40px, 0px)',
+          MozTransform: 'translate(40px, 0px)',
+          WebkitTransform: 'translate(40px, 0px)'
         }
       }
     },
