@@ -99,7 +99,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           top: '4',
           msTransition: 'transform 0.1s ease',
           MozTransition: 'transform 0.1s ease',
-          WebkitTransition: 'transform 0.1s ease',
+          WebkitTransition: '-webkit-transform 0.1s ease',
           transition: 'transform 0.1s ease',
           width: '30'
         }
